@@ -11,5 +11,8 @@
     "url": "ssh://zach@thezachcave.com:5000/home/zach/git/www.git"
   },
   "author": "Zach Johnson",
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "webpack": "~1.13.0"
+  }
 }
