@@ -1,8 +1,7 @@
 'use strict';
 
-var mongoose = require('mongoose');
-
-var Schema = mongoose.Schema;
+var Mongoose = require('mongoose');
+var Schema = Mongoose.Schema;
 
 var GameSchema = new Schema({
 	
@@ -12,6 +11,7 @@ var GameSchema = new Schema({
 
 });
 
-var Game = mongoose.model('Game', GameSchema);
+var Game = Mongoose.model('Game', GameSchema);
 
 module.exports = Game;
+

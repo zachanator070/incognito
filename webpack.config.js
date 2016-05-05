@@ -4,13 +4,13 @@ var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 module.exports = {
   context: __dirname + "/app",
   entry: {
-    javascript: "./app.js",
+    javascript: "./components/app.js",
     html: "./index.html",
-    vendor: ["jquery","react","react-router"],
+    vendor: ["jquery","react","react-router","redux","react-redux"],
   },
   output: {
-    filename: "js/app.js",
-    path: __dirname + "/public",
+    filename: "./js/app.js",
+    path: "./public",
   },
   plugins: [
     new ExtractTextPlugin("./css/styles.css"),
@@ -22,10 +22,10 @@ module.exports = {
       {
       	test: /\.js$/,
       	exclude: /node_modules/,
-      	loader: "babel",
+      	loader: "babel-loader",
       	query: {
-      	  presets: ['react']
-	       }
+      	   presets: ['react', 'es2015','stage-1']
+	}
       },
       // loader for HTML
       {

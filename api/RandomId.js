@@ -30,4 +30,4 @@ var makeid = () => {
     return colors[Math.floor(Math.random()*colors.length)] + nouns[Math.floor(Math.random()*nouns.length)]; 
 }
 
-modules.exports = makeid;
+module.exports = makeid;
