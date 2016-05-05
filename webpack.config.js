@@ -4,7 +4,7 @@ var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 module.exports = {
   context: __dirname + "/app",
   entry: {
-    javascript: "./components/main.js",
+    javascript: "./app.js",
     html: "./index.html",
     vendor: ["jquery","react","react-router"],
   },
