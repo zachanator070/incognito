@@ -4,22 +4,19 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import {Router, Route, hashHistory} from 'react-router';
+import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 
 import MainMenu from './MainMenu';
 import JoinGame from './JoinGame';
+import Frame from './Frame';
+import CreateGame from './CreateGame';
 
-class App extends Component {
-
-	render(){
-		return <Router>
-			<Route path="/" component={MainMenu} />
-			<Route path="/joinGame" component={JoinGame} />
-			//<Route path="/playingGame" component={playingGame} />
+var App = <Router history={browserHistory}>
+			<Route path="/" component={Frame} >
+				<IndexRoute component={MainMenu}/>
+				<Route path="joinGame" component={JoinGame} />
+				<Route path="createGame" component={CreateGame} />
+			</Route>
 		</Router>;
 
-	}
-}
-
-
-ReactDOM.render( <App/>,document.getElementById("root"));
+ReactDOM.render( App,document.getElementById("root"));

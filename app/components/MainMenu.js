@@ -1,20 +1,17 @@
 
 
 import React, {Component} from 'react';
+import {Link, browserHistory} from 'react-router';
 
 class MainMenu extends Component{
 
-  createGame(){
-
-  }
-
   render(){
     return <div>
-      <button onClick="{this.createGame}">Create Game</button>
-      <button href="">Join Game</button>
+      <Link to="/createGame"><div>Create Game</div></Link><br/>
+      <Link to="/joinGame"><div>Join Game</div></Link>
     </div>;
   }
 
 }
 
-export MainMenu;
+export default MainMenu;
