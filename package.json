@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "nodejs node_modules/webpack/bin/webpack.js --progress --colors --watch",
-    "start": "nodejs server.js --history-api-fallback"
+    "start": "nodejs server.js",
+    "debug": "node-debug server.js"
   },
   "repository": {
     "type": "git",
