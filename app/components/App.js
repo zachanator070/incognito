@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import {Router, Route, hashHistory} from 'react-router';
 
 import MainMenu from './MainMenu';
+import JoinGame from './JoinGame';
 
 class App extends Component {
 
@@ -14,7 +15,7 @@ class App extends Component {
 		return <Router>
 			<Route path="/" component={MainMenu} />
 			<Route path="/joinGame" component={JoinGame} />
-			<Route path="/createGame" component={CreateGame} />
+			//<Route path="/playingGame" component={playingGame} />
 		</Router>;
 
 	}

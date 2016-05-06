@@ -5,7 +5,7 @@ class JoinGame extends Component{
 
 
   joinGame(){
-    
+
   }
 
   render(){
@@ -19,3 +19,5 @@ class JoinGame extends Component{
   }
 
 }
+
+export JoinGame;
