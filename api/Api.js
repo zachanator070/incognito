@@ -25,7 +25,6 @@ Api.put('/games',(req,res) => {
 			username: value
 		}
 	*/
-	debugger;
 	//console.log("got info "+req.body);
 
 	Game.create({creator: req.body.username, gameId: RandomId(), players:[req.body.username]}, (err, results) =>{

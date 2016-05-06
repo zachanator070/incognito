@@ -1,0 +1,45 @@
+
+export const JOIN_GAME = 'JOIN_GAME';
+export const CHANGE_GAME_STATE = 'CHANGE_GAME_STATE';
+export const PLAYER_JOINED = 'PLAYER_JOINED';
+export const PLAYER_LEFT = 'PLAYER_LEFT';
+export const LEAVE_GAME = 'LEAVE_GAME';
+
+export const GameStates = {
+
+	SETUP :"SETUP",
+	PLAYING : "PLAYING"
+
+}
+
+export function createJoinGameAction(gameId, creator, username, players,location, possibleLocations, role){
+
+	return {type: JOIN_GAME,
+		gameId: gameId, 
+		username: username, 
+		players: players, 
+		location: location,
+		possibleLocation: possibleLocations, 
+		role: role, 
+		creator:creator};
+}
+
+export function createChangeGameStateAction(gameState){
+
+	return {type: CHANGE_GAME_STATE, gameState: gameState};
+}
+
+export function createPlayerJoinedAction(player){
+
+	return {type: PLAYER_JOINED, player: player};
+}
+
+export function createPlayerLeftAction(player){
+
+	return {type: PLAYER_LEFT, player: player};
+}
+
+export function createLeaveGameAction(){
+
+	return {type: JOIN_GAME};
+}

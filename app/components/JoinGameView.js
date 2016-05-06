@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 
-class JoinGame extends Component{
+class JoinGameView extends Component{
 
 
   joinGame(){
@@ -20,4 +20,4 @@ class JoinGame extends Component{
 
 }
 
-export default JoinGame;
+export default JoinGameView;

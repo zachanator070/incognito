@@ -6,23 +6,17 @@ import ReactDOM from 'react-dom';
 
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 
-import {createStore} from 'redux';
-
 import MainMenu from './MainMenu';
-import JoinGame from './JoinGame';
+import JoinGameView from './JoinGameView';
 import Frame from './Frame';
-import CreateGame from './CreateGame';
-
-import AppReducer from '../reducers/AppReducer.js';
-
-let store = createStore(AppReducer);
+import CreateGameView from './CreateGameView';
 
 var App = <Router history={browserHistory}>
-			<Route path="/" component={Frame} >
-				<IndexRoute component={MainMenu}/>
-				<Route path="joinGame" component={JoinGame} />
-				<Route path="createGame" component={CreateGame} />
-			</Route>
-		</Router>;
+		<Route path="/" component={Frame} >
+			<IndexRoute component={MainMenu}/>
+			<Route path="joinGame" component={JoinGameView} />
+			<Route path="createGame" component={CreateGameView} />
+		</Route>
+	</Router>;
 
 ReactDOM.render( App,document.getElementById("root"));
