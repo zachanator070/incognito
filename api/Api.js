@@ -8,6 +8,7 @@ var Express = require('express');
 var Game = require('./models/Game.js');
 var RandomId = require('./RandomId.js');
 var bodyParser = require('body-parser');
+var Locations = require('./Locations.js');
 
 var Api = Express();
 
@@ -27,9 +28,12 @@ Api.put('/games',(req,res) => {
 	*/
 	//console.log("got info "+req.body);
 
-	Game.create({creator: req.body.username, gameId: RandomId(), players:[req.body.username]}, (err, results) =>{
+	var possibleLocations = Locations.getRandomLocations();
+	console.log("locations generated: "+possibleLocations);
+	var location = Locations.getRandomLocation(possibleLocations);
+	Game.create({creator: req.body.username, gameId: RandomId(), players:[req.body.username], possibleLocations:[...possibleLocations], location: location}, (err, results) =>{
 
-		//if the game was created then we return the game in json format
+		//if the game was created the we return the game in json format
 		if(err){
 			return res.status(400);
 		}

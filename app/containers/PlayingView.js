@@ -14,12 +14,11 @@ const mapStateToProps = (state) => {
 		players: state.players,
 		location: state.location,
 		possibleLocations: state.possibleLocations,
-		role: state.role
 		}
 
 }
 
-const mapDespathToProps = (dispatch){
+const mapDispatchToProps = (dispatch) =>{
 
 	return {
 		onStartGame: () => {

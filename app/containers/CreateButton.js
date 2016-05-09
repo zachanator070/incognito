@@ -6,34 +6,51 @@ import {dispatch} from 'redux';
 import {browserHistory} from 'react-router';
 import $ from 'jquery';
 
-class CreateButton extends Component {
+import {createJoinGameAction} from '../actions/actions.js';
 
-	createGame(){
-    		//console.log("call some api call then use browserHistory.push('someurl') here");
-    		//tell the server to create the game in the database
+import {connect} from 'react-redux';
 
-   		console.log("sending data"+JSON.stringify({username: $('#username').val() }));
+import socket from '../socket.js';
 
-		$.ajax({
-      			contentType: 'application/json',
-     			data: JSON.stringify({username: $('#username').val() }),
-      			method: "put",
-      			url: "/games",
-      			success: (data,status)=>{
-				browserHistory.push("/playing");
-				console.log("got back status:"+status+" with data:"+data.gameId+" "+data.creator+" "+data.players);
-			},
-      			error: (req,error)=>{console.log('unable to create game, got message: '+error);}
-    		});
-  	}
+const mapStateToProps = (state) => {
 
-
-	render(){
-
-		return <ActionButton onclick={this.createGame} value='Create Game'/>;
-	}
+	return {
+		value: "Create Game"
+		}
 
 }
+
+const mapDispatchToProps = (dispatch) =>{
+
+	return {
+
+		onclick: ()=>{
+
+			console.log("sending data"+JSON.stringify({username: $('#username').val() }));
+
+			$.ajax({
+      				contentType: 'application/json',
+     				data: JSON.stringify({username: $('#username').val() }),
+      				method: "put",
+	      			url: "/games",
+      				success: (data,status)=>{
+					browserHistory.push("/playing");
+					console.log("got back status:"+status+" with data: \n gameId:"+data.gameId+"\n creator: "+data.creator+"\n player username: "+data.creator+"\n players in game:"+data.players+"\n possible locations:" +data.possibleLocations+"\n current location:"+data.location);
+					dispatch(createJoinGameAction(data.gameId, data.creator, data.creator, data.players,data.location, data.possibleLocations));
+					socket.emit('room',data.gameId);
+				},
+      				error: (req,error)=>{console.log('unable to create game, got message: '+error);}
+    			});
+
+		}
+	};
+
+}
+
+const CreateButton =  connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(ActionButton);
 
 export default CreateButton;
 

@@ -6,7 +6,7 @@ function PossibleLocationsReducer(locations=[], action){
 	switch(action.type){
 		
 		case JOIN_GAME:
-			return action.locations;
+			return action.possibleLocations;
 
 		default:
 			return locations;

@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     javascript: "./components/App.js",
     html: "./index.html",
-    vendor: ["jquery","react","react-router","redux","react-redux"],
+    vendor: ["jquery","react","react-router","redux","react-redux",'socket.io-client'],
   },
   output: {
     filename: "./js/app.js",

@@ -11,7 +11,7 @@ var locations = {
 		"Nuclear Engineer",
 		"Navy Sailor",
 		"Helmsman",
-		"Comms Technician,
+		"Comms Technician",
 		"First Mate",
 		"Engine Mechanic",
 		"Torpedo Controller"
@@ -117,7 +117,7 @@ exports.getRandomLocations = function(){
 
 }
 
-exports.getRandomRoles(location, numPlayers){
+exports.getRandomRoles = function(location, numPlayers){
 
 	//not the most effecient thing I have written
 

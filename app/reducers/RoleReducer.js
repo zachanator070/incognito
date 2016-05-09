@@ -4,9 +4,6 @@ function RoleReducer(role='', action){
 
 	switch(action.type){
 
-		case JOIN_GAME:
-			return action.role;
-
 		default:
 			return role;
 

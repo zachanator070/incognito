@@ -12,15 +12,14 @@ export const GameStates = {
 
 }
 
-export function createJoinGameAction(gameId, creator, username, players,location, possibleLocations, role){
+export function createJoinGameAction(gameId, creator, username, players,location, possibleLocations){
 
 	return {type: JOIN_GAME,
 		gameId: gameId, 
 		username: username, 
 		players: players, 
 		location: location,
-		possibleLocation: possibleLocations, 
-		role: role, 
+		possibleLocations: possibleLocations,
 		creator:creator};
 }
 
