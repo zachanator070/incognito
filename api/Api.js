@@ -78,7 +78,9 @@ io.on('connection', (socket) => {
             console.log('could not get games '+error);
             return;
           }
+          console.log('request successful, got data: '+data);
           if(data.creator == player){
+            console.log('host left the game '+gameId);
             socket.to(gameId).emit("GAME_CLOSED");
           }
         });
@@ -143,11 +145,11 @@ Api.get('/games', (req,res) =>{
 	Game.findOne({gameId:req.get('gameId')}, (err, results) =>{
 
 		if(err){
-			return res.send(400);
+			return res.sendStatus(400);
 		}
 
 		if(!results){
-			return res.send(404);
+			return res.sendStatus(404);
 		}
 
 		return res.status(200).json(results);
