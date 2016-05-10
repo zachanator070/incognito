@@ -70,7 +70,7 @@ io.on('connection', (socket) => {
 
       request({
           method:'get',
-          url:'localhost:3000/games',
+          url:'http://localhost:3000/games',
           headers:{gameId:gameId}
         },
         (error, response, data)=>{
