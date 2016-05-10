@@ -38,6 +38,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', (socket)=>{
     connections.filter((connection)=>{
       if(connection.socket == socket){
+        console.log("player "+connection.player+" left game "+connection.gameId);
         socket.to(connection.gameId).emit('PLAYER_LEFT',{player:connection.player});
       }
     });
