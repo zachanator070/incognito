@@ -52,6 +52,9 @@ io.on('connection', (socket) => {
       return true;
 
     });
+
+      console.log('there are now '+connections.length+" connections");
+
   });
 
 });
