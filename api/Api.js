@@ -19,7 +19,7 @@ var io= require('socket.io')(http);
 var connections = [];
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  console.log(socket.id+' connected');
 
 	socket.on('room', (room) => {
 
