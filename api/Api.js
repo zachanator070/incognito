@@ -156,13 +156,13 @@ Api.post('/games/leave', (req,res) => {
 
 Api.delete('/games', (req,res) => {
 
-  /* request should have a body that is formatted:
+  /* request should have a header that is formatted:
     {
       gameId: value
     }
   */
 
-  Game.remove({gameId:gameId}, (err,results) => {
+  Game.remove({gameId:req.get('gameId')}, (err,results) => {
 
     if(err){
 			return res.send(400);
