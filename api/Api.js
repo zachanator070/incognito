@@ -78,11 +78,13 @@ io.on('connection', (socket) => {
             console.log('could not get games '+error);
             return;
           }
-          console.log('request successful, got data: '+data);
-          console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
-          if(JSON.parse(data)['creator'] == player){
-            console.log('host left the game '+gameId);
-            socket.to(gameId).emit("GAME_CLOSED");
+          if(resonse.statusCode()==200){
+            console.log('request successful, got data: '+data);
+            console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
+            if(JSON.parse(data)['creator'] == player){
+              console.log('host left the game '+gameId);
+              socket.to(gameId).emit("GAME_CLOSED");
+            }
           }
         });
 
