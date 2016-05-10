@@ -9,7 +9,7 @@ var Game = require('./models/Game.js');
 var RandomId = require('./RandomId.js');
 var bodyParser = require('body-parser');
 var Locations = require('./Locations.js');
-var $ = require('jquery');
+var $ = require('jQuery');
 var Api = Express();
 
 var http = require('http').Server(Api);
