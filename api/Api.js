@@ -9,7 +9,7 @@ var Game = require('./models/Game.js');
 var RandomId = require('./RandomId.js');
 var bodyParser = require('body-parser');
 var Locations = require('./Locations.js');
-
+var $ = require('jquery');
 var Api = Express();
 
 var http = require('http').Server(Api);
@@ -27,6 +27,12 @@ io.on('connection', (socket) => {
 		socket.join(room);
 	});
 
+  socket.on('leave_room', (room) => {
+
+		console.log('a client left the room ' + room);
+		socket.leave(room);
+	});
+
   socket.on('PLAYER_JOINED', (data)=>{
 
     console.log("got PLAYER_JOINED event with data: "+data.gameId+" "+data.player);
@@ -39,6 +45,10 @@ io.on('connection', (socket) => {
     console.log(socket.id+" disconnected");
     console.log('there were '+connections.length+" connections");
     console.log('searching...');
+
+    let gameId = "";
+    let player = "";
+
     connections = connections.filter((connection)=>{
 
       console.log(connection.socket.id == socket.id);
@@ -46,6 +56,8 @@ io.on('connection', (socket) => {
       if(connection.socket == socket){
         console.log("player "+connection.player+" left game "+connection.gameId);
         socket.to(connection.gameId).emit('PLAYER_LEFT',{player:connection.player});
+        gameId = connection.gameId;
+        player = connection.player;
         return false;
       }
 
@@ -55,6 +67,19 @@ io.on('connection', (socket) => {
 
       console.log('there are now '+connections.length+" connections");
       console.log(connections);
+
+      $.ajax({
+        contentType: 'application/json',
+        url:'/games',
+        method: 'get',
+        data: JSON.stringify({gameId:gameId}),
+        success: (data,status) =>{
+          if(data.creator == player){
+            socket.to(gameId).emit("GAME_CLOSED");
+          }
+        }
+      });
+
   });
 
 });

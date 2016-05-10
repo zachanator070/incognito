@@ -1,7 +1,9 @@
 import io from 'socket.io-client';
 import AppReducer from './reducers/AppReducer';
 
-import {createPlayerJoinedAction,createPlayerLeftAction} from './actions/actions';
+import {browserHistory} from 'react-router';
+
+import {createPlayerJoinedAction,createPlayerLeftAction,createLeaveGameAction} from './actions/actions';
 
 import $ from 'jquery';
 
@@ -34,6 +36,15 @@ socket.on('PLAYER_LEFT',(data)=>{
 	if(data.player != store.getState().username){
 			store.dispatch(createPlayerLeftAction(data.player));
 	}
+
+});
+
+socket.on('GAME_CLOSED',()=>{
+
+	socket.emit('leave_room',store.getState().gameId);
+	console.log('game '+store.getState().gameId+' closed');
+	browserHistory.push("/joinGame");
+	store.dispatch(createLeaveGameAction());
 
 });
 
