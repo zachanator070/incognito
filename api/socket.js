@@ -1,24 +1,53 @@
+var request = require('request');
 var Server = require('socket.io');
 
 var io = new Server();
 
 var connections = [];
 
+function deleteGame(gameId){
+
+  request({
+      method:'delete',
+      url:'http://localhost:3000/games',
+      headers:{gameId:gameId}
+    },
+    (error, response, data)=>{
+      if(error){
+        console.log('could not delete game '+error);
+        return;
+      }
+      if(response.statusCode==200){
+        console.log('request successful, deleted game ');
+      }
+    });
+
+}
+
 io.on('connection', (socket) => {
   console.log(socket.id+' connected');
 
+  //
+  // when a user connects to a room
+  //
 	socket.on('room', (room) => {
 
 		console.log('a client joined the room ' + room);
 		socket.join(room);
 	});
 
+  //
+  // when a user leaves a room
+  //
   socket.on('leave_room', (room) => {
 
 		console.log('a client left the room ' + room);
 		socket.leave(room);
 	});
 
+  //
+  // when a user joins a game
+  //
   socket.on('PLAYER_JOINED', (data)=>{
 
     console.log("got PLAYER_JOINED event with data: "+data.gameId+" "+data.player);
@@ -27,6 +56,9 @@ io.on('connection', (socket) => {
 
   });
 
+  //
+  // when a user disconnects
+  //
   socket.on('disconnect', ()=>{
 
     console.log(socket.id+" disconnected");
@@ -73,6 +105,7 @@ io.on('connection', (socket) => {
           if(JSON.parse(data)['creator'] == player){
             console.log('host left the game '+gameId);
             socket.to(gameId).emit("GAME_CLOSED");
+            deleteGame(gameId);
           }
         }
       });

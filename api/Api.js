@@ -5,11 +5,12 @@
 //express server with added routes to be included in the public facing api
 
 var Express = require('express');
+var bodyParser = require('body-parser');
+
 var Game = require('./models/Game.js');
 var RandomId = require('./RandomId.js');
-var bodyParser = require('body-parser');
 var Locations = require('./Locations.js');
-var request = require('request');
+
 var Api = Express();
 
 Api.use(bodyParser.json());
