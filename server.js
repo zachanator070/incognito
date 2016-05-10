@@ -1,13 +1,12 @@
 // setup Express
 var Api = require('./api/Api.js');
 var io = require('./api/socket.js');
-// setup mongoose
-//var mongoose = require('mongoose');
-//var db = mongoose.connect('mongodb://localhost/db');
+
+var server = require('http').createServer(Api);
 
 // start the server
-io = io.attach(Api);
+io = io.attach(server);
 
-Api.listen(3000, function () {
+server.listen(3000, function () {
   console.log("Started on port 3000");
 });
