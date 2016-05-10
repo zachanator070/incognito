@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import EndButton from './EndButton';
+import ActionButton from './ActionButton';
 
 class PlayingView extends Component{
 
