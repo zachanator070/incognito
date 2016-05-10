@@ -36,12 +36,12 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', (socket)=>{
-    console.log("someone disconnected");
+    console.log(socket.id+" disconnected");
     console.log('there were '+connections.length+" connections");
     console.log('searching...');
     connections.filter((connection)=>{
 
-      console.log(connection.socket == socket);
+      console.log(connection.socket.id == socket.id);
 
       if(connection.socket == socket){
         console.log("player "+connection.player+" left game "+connection.gameId);

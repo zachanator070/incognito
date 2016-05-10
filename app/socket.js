@@ -37,40 +37,4 @@ socket.on('PLAYER_LEFT',(data)=>{
 
 });
 
-socket.on('disconnect', () =>{
-
-	let currentGame = store.getState().gameId;
-	let currentPlayer = store.getState().username;
-
-	socket.emit("PLAYER_LEFT",{gameId: currentGame, player: currentPlayer });
-
-	//delete the game if you are the creator
-	/*if( currentPlayer === store.getState().creator){
-		$.ajax({
-			contentType: 'application/json',
-			data: JSON.stringify({gameId:  currentGame}),
-			method: "delete",
-			url: "/games",
-			success: (data,status)=>{
-				console.log("deleted the game "+ currentGame);
-			},
-			error: (req,error) =>{}
-		});
-	}
-
-	//leave the game otherwise
-	else{
-		$.ajax({
-			contentType: 'application/json',
-			data: JSON.stringify({gameId: currentGame, player: currentPlayer }),
-			method: "post",
-			url: "/games/leave",
-			success: (data,status)=>{
-				socket.emit("PLAYER_LEFT",{gameId: currentGame, player: currentPlayer });
-			},
-			error: (req,error) =>{}
-		});
-	}*/
-});
-
 export default socket;
