@@ -1,4 +1,6 @@
-var io= require('socket.io');
+var Server = require('socket.io');
+
+var io = new Server();
 
 var connections = [];
 
