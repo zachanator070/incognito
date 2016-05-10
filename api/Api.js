@@ -54,7 +54,7 @@ io.on('connection', (socket) => {
     });
 
       console.log('there are now '+connections.length+" connections");
-
+      console.log(connections);
   });
 
 });
