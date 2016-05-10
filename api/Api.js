@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
 
   });
 
-  socket.on('disconnect', (socket)=>{
+  socket.on('disconnect', ()=>{
     console.log(socket.id+" disconnected");
     console.log('there were '+connections.length+" connections");
     console.log('searching...');
