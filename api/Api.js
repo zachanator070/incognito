@@ -79,8 +79,8 @@ io.on('connection', (socket) => {
             return;
           }
           console.log('request successful, got data: '+data);
-          console.log('searching for user '+player +'compared to '+data.creator+' results in '+ (data.creator == player));
-          if(data.creator == player){
+          console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
+          if(JSON.parse(data)['creator'] == player){
             console.log('host left the game '+gameId);
             socket.to(gameId).emit("GAME_CLOSED");
           }
