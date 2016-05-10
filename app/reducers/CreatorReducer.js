@@ -1,14 +1,16 @@
 
-import {JOIN_GAME} from '../actions/actions';
+import {JOIN_GAME,LEAVE_GAME} from '../actions/actions';
 
 function CreatorReducer(creator="", action){
 
 	switch(action.type){
-	
+
 		case JOIN_GAME:
-			console.log('creator reducer caught value:' + action.creator);
 			return action.creator;
-		
+
+		case LEAVE_GAME:
+			return "";
+
 		default:
 			return creator;
 

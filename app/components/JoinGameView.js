@@ -1,6 +1,8 @@
 
 import React, {Component} from 'react';
 
+import JoinButton from '../containers/JoinButton';
+
 class JoinGameView extends Component{
 
 
@@ -13,7 +15,8 @@ class JoinGameView extends Component{
     return <div>
       Game ID: <input type="text" id="gameId"/><br/>
       Username: <input type="text" id="username"/><br/>
-      <button onClick={this.joinGame}>Join Game</button>
+      <JoinButton/>
+      <div id="error"></div>
     </div>;
 
   }

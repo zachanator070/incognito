@@ -12,6 +12,39 @@ var Locations = require('./Locations.js');
 
 var Api = Express();
 
+var http = require('http').Server(Api);
+
+var io= require('socket.io')(http);
+
+var connections = [];
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+	socket.on('room', (room) => {
+
+		console.log('a client joined the room ' + room);
+		socket.join(room);
+	});
+
+  socket.on('PLAYER_JOINED', (data)=>{
+
+    console.log("got PLAYER_JOINED event with data: "+data.gameId+" "+data.player);
+    socket.to(data.gameId).emit('PLAYER_JOINED',{player:data.player});
+    connections.push({socket:socket,player:data.player, gameId:data.gameId});
+
+  });
+
+  socket.on('disconnect', (socket)=>{
+    connections.filter((connection)=>{
+      if(connection.socket == socket){
+        socket.to(connection.gameId).emit('PLAYER_LEFT',{player:connection.player});
+      }
+    });
+  });
+
+});
+
 Api.use(bodyParser.json());
 Api.use(bodyParser.urlencoded({
   extended: true
@@ -31,7 +64,18 @@ Api.put('/games',(req,res) => {
 	var possibleLocations = Locations.getRandomLocations();
 	console.log("locations generated: "+possibleLocations);
 	var location = Locations.getRandomLocation(possibleLocations);
-	Game.create({creator: req.body.username, gameId: RandomId(), players:[req.body.username], possibleLocations:[...possibleLocations], location: location}, (err, results) =>{
+  var gameId = RandomId();
+  while(Game.where({gameId:gameId}).count() >0){
+    gameId = RandomId();
+  }
+
+	Game.create({creator: req.body.username,
+    gameId: gameId,
+    players:[req.body.username],
+    possibleLocations:[...possibleLocations],
+    location: location,
+    state: "SETUP"},
+  (err, results) =>{
 
 		//if the game was created the we return the game in json format
 		if(err){
@@ -72,6 +116,47 @@ Api.get('/games', (req,res) =>{
 
 Api.post('/games/join', (req,res) => {
 
+	/* request should have a body that is formatted:
+		{
+			gameId: value,
+			player: value
+		}
+	*/
+
+	Game.findOne({gameId: req.body.gameId}, (err, game) =>{
+
+		if(err || !game){
+			return res.status(404).send('Specified game not found');
+		}
+
+    if(game.state === "SETUP"){
+
+      if(game.players.indexOf(req.body.player) >-1 ){
+        return res.status(400).send('Username already exists');
+      }
+
+      game.players = [...game.players, req.body.player];
+
+      game.save((err)=>{
+
+        if(err){
+          return res.sendStatus(500);
+        }
+
+      });
+
+      return res.status(200).json(game);
+
+    }
+    else{
+      return res.status(403).send("Unable to join a game that is not in setup");
+    }
+
+	});
+
+});
+
+Api.post('/games/leave', (req,res) => {
 
 	/* request should have a body that is formatted:
 		{
@@ -81,13 +166,17 @@ Api.post('/games/join', (req,res) => {
 	*/
 
 
-	Game.update({gameId: req.body.gameId},{ $push: {players:req.body.player}}, (err, results) =>{
+	Game.update({gameId: req.body.gameId},{ $pull: {players:req.body.player}}, (err, results) =>{
+
+    console.log('player '+req.body.player+' leaving game: '+req.body.gameId);
 
 		if(err){
+      console.log('sent 400');
 			return res.send(400);
 		}
 
 		if(!results){
+      console.log('sent 404');
 			return res.send(404);
 		}
 
@@ -97,12 +186,24 @@ Api.post('/games/join', (req,res) => {
 
 });
 
-
 Api.delete('/games', (req,res) => {
 
+  /* request should have a body that is formatted:
+    {
+      gameId: value
+    }
+  */
 
+  Game.remove({gameId:gameId}, (err,results) => {
 
+    if(err){
+			return res.send(400);
+		}
+
+    return res.status(200);
+
+  });
 
 });
 
-module.exports = Api;
+module.exports = http;

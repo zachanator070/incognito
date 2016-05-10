@@ -10,7 +10,8 @@ var GameSchema = new Schema({
 	creator: String,
 	players: [],
 	possibleLocations: [],
-	location: String
+	location: String,
+	state: String
 
 });
 

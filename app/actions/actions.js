@@ -15,9 +15,9 @@ export const GameStates = {
 export function createJoinGameAction(gameId, creator, username, players,location, possibleLocations){
 
 	return {type: JOIN_GAME,
-		gameId: gameId, 
-		username: username, 
-		players: players, 
+		gameId: gameId,
+		username: username,
+		players: players,
 		location: location,
 		possibleLocations: possibleLocations,
 		creator:creator};
@@ -40,5 +40,5 @@ export function createPlayerLeftAction(player){
 
 export function createLeaveGameAction(){
 
-	return {type: JOIN_GAME};
+	return {type: LEAVE_GAME};
 }

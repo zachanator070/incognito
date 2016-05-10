@@ -15,7 +15,7 @@ import socket from '../socket.js';
 const mapStateToProps = (state) => {
 
 	return {
-		value: "Create Game"
+		value: "Join Game"
 		}
 
 }
@@ -26,20 +26,24 @@ const mapDispatchToProps = (dispatch) =>{
 
 		onclick: ()=>{
 
-			console.log("sending data"+JSON.stringify({username: $('#username').val() }));
+			let gameId = $('#gameId').val();
+			let username = $('#username').val();
+
+			console.log("sending data"+JSON.stringify({gameId: gameId , username:  username}));
 
 			$.ajax({
     				contentType: 'application/json',
-   					data: JSON.stringify({username: $('#username').val() }),
-    				method: "put",
-      			url: "/games",
+   					data: JSON.stringify({gameId: gameId, player: username }),
+    				method: "post",
+      			url: "/games/join",
     				success: (data,status)=>{
 							browserHistory.push("/playing");
 							console.log("got back status:"+status+" with data: \n gameId:"+data.gameId+"\n creator: "+data.creator+"\n player username: "+data.creator+"\n players in game:"+data.players+"\n possible locations:" +data.possibleLocations+"\n current location:"+data.location);
 							dispatch(createJoinGameAction(data.gameId, data.creator, data.creator, data.players,data.location, data.possibleLocations));
 							socket.emit('room',data.gameId);
+							socket.emit("PLAYER_JOINED",{gameId: gameId,player:username});
 						},
-    				error: (req,error)=>{console.log('unable to create game, got message: '+error);}
+    				error: (req,textStatus, error)=>{$('#error').text(error+": status code "+req.statusCode());}
   			});
 
 		}
@@ -47,9 +51,9 @@ const mapDispatchToProps = (dispatch) =>{
 
 }
 
-const CreateButton =  connect(
+const JoinButton =  connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(ActionButton);
 
-export default CreateButton;
+export default JoinButton;

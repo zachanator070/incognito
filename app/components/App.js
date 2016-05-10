@@ -4,8 +4,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import {createStore} from 'redux';
-
 import {Provider} from 'react-redux';
 
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
@@ -19,7 +17,7 @@ import PlayingView from '../containers/PlayingView';
 
 import AppReducer from '../reducers/AppReducer';
 
-let store = createStore(AppReducer);
+import {store} from '../socket';
 
 var App = (
 	<Provider store={store}>
@@ -35,3 +33,5 @@ var App = (
 );
 
 ReactDOM.render( App,document.getElementById("root"));
+
+export default store;
