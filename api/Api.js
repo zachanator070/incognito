@@ -77,7 +77,8 @@ io.on('connection', (socket) => {
           if(data.creator == player){
             socket.to(gameId).emit("GAME_CLOSED");
           }
-        }
+        },
+        error: ()=>{}
       });
 
   });
