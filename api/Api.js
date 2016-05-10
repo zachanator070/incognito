@@ -70,12 +70,13 @@ io.on('connection', (socket) => {
 
       request({
           method:'get',
-          url:'/games',
+          url:'localhost:3000/games',
           headers:{gameId:gameId}
         },
         (error, response, data)=>{
           if(error){
             console.log('could not get games '+error);
+            return;
           }
           if(data.creator == player){
             socket.to(gameId).emit("GAME_CLOSED");
