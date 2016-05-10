@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import AppReducer from './reducers/AppReducer';
 
-import {createPlayerJoinedAction} from './actions/actions';
+import {createPlayerJoinedAction,createPlayerLeftAction} from './actions/actions';
 
 import $ from 'jquery';
 
