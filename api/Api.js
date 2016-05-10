@@ -9,7 +9,7 @@ var Game = require('./models/Game.js');
 var RandomId = require('./RandomId.js');
 var bodyParser = require('body-parser');
 var Locations = require('./Locations.js');
-var $ = require('jquery');
+var request = require('request');
 var Api = Express();
 
 var http = require('http').Server(Api);
@@ -68,18 +68,19 @@ io.on('connection', (socket) => {
       console.log('there are now '+connections.length+" connections");
       console.log(connections);
 
-      $.ajax({
-        contentType: 'application/json',
-        url:'/games',
-        method: 'get',
-        data: JSON.stringify({gameId:gameId}),
-        success: (data,status) =>{
+      request({
+          method:'get',
+          url:'/games',
+          headers:{gameId:gameId}
+        },
+        (error, response, data)=>{
+          if(error){
+            console.log('could not get games '+error);
+          }
           if(data.creator == player){
             socket.to(gameId).emit("GAME_CLOSED");
           }
-        },
-        error: ()=>{}
-      });
+        });
 
   });
 
@@ -132,13 +133,13 @@ Api.put('/games',(req,res) => {
 Api.get('/games', (req,res) =>{
 
 
-	/* request should have a body that is formatted:
+	/* request should have a header that is formatted:
 		{
 			gameId: value
 		}
 	*/
 
-	Game.findOne({gameId:req.body.gameId}, (err, results) =>{
+	Game.findOne({gameId:req.get('gameId')}, (err, results) =>{
 
 		if(err){
 			return res.send(400);
