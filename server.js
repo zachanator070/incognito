@@ -6,7 +6,7 @@ var io = require('./api/socket.js');
 //var db = mongoose.connect('mongodb://localhost/db');
 
 // start the server
-io = io.Server(Api);
+io = io.attach(Api);
 
 Api.listen(3000, function () {
   console.log("Started on port 3000");
