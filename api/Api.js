@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
     console.log(socket.id+" disconnected");
     console.log('there were '+connections.length+" connections");
     console.log('searching...');
-    connections.filter((connection)=>{
+    connections = connections.filter((connection)=>{
 
       console.log(connection.socket.id == socket.id);
 
