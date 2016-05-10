@@ -37,11 +37,20 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', (socket)=>{
     console.log("someone disconnected");
+    console.log('there were '+connections.length+" connections");
+    console.log('searching...');
     connections.filter((connection)=>{
+
+      console.log(connection.socket == socket);
+
       if(connection.socket == socket){
         console.log("player "+connection.player+" left game "+connection.gameId);
         socket.to(connection.gameId).emit('PLAYER_LEFT',{player:connection.player});
+        return false;
       }
+
+      return true;
+
     });
   });
 
