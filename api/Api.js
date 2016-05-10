@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
             console.log('could not get games '+error);
             return;
           }
-          if(resonse.statusCode()==200){
+          if(response.statusCode()==200){
             console.log('request successful, got data: '+data);
             console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
             if(JSON.parse(data)['creator'] == player){
