@@ -31,8 +31,8 @@ io.on('connection', (socket) => {
     console.log('there were '+connections.length+" connections");
     console.log('searching...');
 
-    let gameId = "";
-    let player = "";
+    var gameId = "";
+    var player = "";
 
     //need to update the current sockets that are being kept track of
     connections = connections.filter((connection)=>{
