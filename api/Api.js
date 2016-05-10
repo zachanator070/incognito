@@ -36,6 +36,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', (socket)=>{
+    console.log("someone disconnected");
     connections.filter((connection)=>{
       if(connection.socket == socket){
         console.log("player "+connection.player+" left game "+connection.gameId);
