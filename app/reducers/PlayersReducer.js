@@ -16,7 +16,7 @@ function PlayersReducer(players=[], action){
 			return [ ...players, action.player];
 
 		case PLAYER_LEFT:
-			return players.map(
+			return players.filter(
 				(player) =>{
 					return !(player == action.player);
 				}
