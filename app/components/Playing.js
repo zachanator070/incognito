@@ -23,7 +23,6 @@ class PlayingView extends Component{
 				<div>
 					{this.props.location}
 				</div>
-				<br/>
 			);
 		}
 
@@ -55,7 +54,7 @@ class PlayingView extends Component{
 			<div>
 				gameId: {this.props.gameId}<br/>
 				creator: {this.props.creator}<br/>
-				{this.renderLocation()}
+				{this.renderLocation()}<br/>
 				role: {this.props.role}<br/>
 
 				players: <br/>
