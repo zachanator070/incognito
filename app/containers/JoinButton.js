@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) =>{
     				method: "post",
       			url: "/games/join",
     				success: (data,status)=>{
-							browserHistory.push("/playing");
+							browserHistory.push("/setup");
 							console.log("got back status:"+status+" with data: \n gameId:"+data.gameId+"\n creator: "+data.creator+"\n player username: "+data.creator+"\n players in game:"+data.players+"\n possible locations:" +data.possibleLocations+"\n current location:"+data.location);
 							dispatch(createJoinGameAction(data.gameId, data.creator, data.creator, data.players,data.location, data.possibleLocations));
 							socket.emit('room',data.gameId);

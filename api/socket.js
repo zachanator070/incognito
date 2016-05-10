@@ -5,7 +5,7 @@ var io = new Server();
 
 var connections = [];
 
-function deleteGame(gameId){
+const deleteGame = (gameId)=>{
 
   request({
       method:'delete',

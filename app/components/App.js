@@ -14,6 +14,7 @@ import Frame from './Frame';
 import CreateGameView from './CreateGameView';
 
 import PlayingView from '../containers/PlayingView';
+import SetupView from '../containers/SetupView';
 
 import AppReducer from '../reducers/AppReducer';
 
@@ -26,6 +27,7 @@ var App = (
 				<IndexRoute component={MainMenu}/>
 				<Route path="joinGame" component={JoinGameView} />
 				<Route path="createGame" component={CreateGameView} />
+				<Route path="setup" component={SetupView}/>
 				<Route path="playing" component={PlayingView}/>
 			</Route>
 		</Router>

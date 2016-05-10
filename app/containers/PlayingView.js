@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {createChangeGameStateAction, GameStates} from '../actions/actions';
 
-import GameView from '../components/GameView';
+import Playing from '../components/Playing';
 
 const mapStateToProps = (state) => {
 
@@ -12,8 +12,7 @@ const mapStateToProps = (state) => {
 		gameId: state.gameId,
 		creator: state.creator,
 		players: state.players,
-		location: state.location,
-		possibleLocations: state.possibleLocations,
+		username: state.username
 		}
 
 }
@@ -21,8 +20,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>{
 
 	return {
-		onStartGame: () => {
-			dispatch(createChangeGameStateAction(GameState.PLAYING)); 
+		onEndGame: () => {
+			//need to put request to server here to end the game
+			dispatch(createChangeGameStateAction(GameState.SETUP));
 		},
 	}
 
@@ -31,6 +31,6 @@ const mapDispatchToProps = (dispatch) =>{
 const PlayingView =  connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(GameView);
+)(Setup);
 
 export default PlayingView;
