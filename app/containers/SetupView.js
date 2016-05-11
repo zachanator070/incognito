@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import socket from '../socket';
+
 import {createChangeGameStateAction, GameStates} from '../actions/actions';
 
 import Setup from '../components/Setup';
@@ -22,6 +24,12 @@ const mapDispatchToProps = (dispatch) =>{
 	return {
 		onStartGame: () => {
 			//need to put request to server here to start the game
+			$.ajax({
+
+			});
+
+			socket.emit('START_GAME');
+
 			dispatch(createChangeGameStateAction(GameState.PLAYING));
 		},
 	}

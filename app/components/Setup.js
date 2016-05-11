@@ -17,6 +17,7 @@ class Setup extends Component{
 	renderStartButton(){
 
 		if(this.props.username == this.props.creator){
+			console.log("username: "+this.props.username+" creator: "+this.props.creator);
 			return (<ActionButton onclick={this.props.onStartGame} value="Start Game"/>);
 		}
 		else{

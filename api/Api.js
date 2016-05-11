@@ -134,7 +134,36 @@ Api.post('/games/leave', (req,res) => {
 	*/
 
 
-	Game.update({gameId: req.body.gameId},{ $pull: {players:req.body.player}}, (err, results) =>{
+	Game.findOneAndUpdate({gameId: req.body.gameId},{ $pull: {players:req.body.player}}, (err, results) =>{
+
+    console.log('player '+req.body.player+' leaving game: '+req.body.gameId);
+
+		if(err){
+      console.log('sent 400');
+			return res.send(400);
+		}
+
+		if(!results){
+      console.log('sent 404');
+			return res.sendStatus(404);
+		}
+
+		return res.status(200).json(results);
+
+	});
+
+});
+
+Api.post('/games/start', (req,res) => {
+
+	/* request should have a body that is formatted:
+		{
+			gameId: value
+		}
+	*/
+
+
+	Game.update({gameId: req.body.gameId},{ $set: {state:'PLAYING'}}, (err, results) =>{
 
     console.log('player '+req.body.player+' leaving game: '+req.body.gameId);
 

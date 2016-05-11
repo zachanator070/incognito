@@ -69,6 +69,7 @@ io.on('connection', (socket) => {
     var player = "";
 
     //need to update the current sockets that are being kept track of
+    //then find the game that they were apart of and tell the rest of the players
     connections = connections.filter((connection)=>{
 
       console.log(connection.socket.id == socket.id);
@@ -85,30 +86,34 @@ io.on('connection', (socket) => {
 
     });
 
-    //need to see if the disconnected user was the creator, if so tell the other players
+
     console.log('there are now '+connections.length+" connections");
     console.log(connections);
 
+
+    //need to tell the server that the user left the game
+    //then need to see if the disconnected user was the creator, if so tell the other players
     request({
-        method:'get',
-        url:'http://localhost:3000/games',
-        headers:{gameId:gameId}
-      },
-      (error, response, data)=>{
-        if(error){
-          console.log('could not get games '+error);
-          return;
+        headers: {'content-type' : 'application/json'},
+        method: 'post',
+        url: 'http://localhost:3000/games/leave',
+        body: JSON.stringify({gameId:gameId, player:player})
+    },
+    (error,response,data)=>{
+      if(error){
+        console.log('could not get games '+error);
+        return;
+      }
+      else if(response.statusCode==200){
+        console.log('data got back: '+ data);
+        console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
+        if(JSON.parse(data)['creator'] == player){
+          console.log('host left the game '+gameId);
+          socket.to(gameId).emit("GAME_CLOSED");
+          deleteGame(gameId);
         }
-        if(response.statusCode==200){
-          console.log('request successful, got data: '+data);
-          console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
-          if(JSON.parse(data)['creator'] == player){
-            console.log('host left the game '+gameId);
-            socket.to(gameId).emit("GAME_CLOSED");
-            deleteGame(gameId);
-          }
-        }
-      });
+      }
+    });
 
   });
 

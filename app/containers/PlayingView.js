@@ -31,6 +31,6 @@ const mapDispatchToProps = (dispatch) =>{
 const PlayingView =  connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Setup);
+)(Playing);
 
 export default PlayingView;
