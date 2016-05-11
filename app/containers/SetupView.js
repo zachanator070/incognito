@@ -2,12 +2,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import socket from '../socket';
+import socket,{store} from '../socket';
 
 import {createChangeGameStateAction, GameStates} from '../actions/actions';
 
 import Setup from '../components/Setup';
-import {store} from '../socket';
 
 import $ from 'jquery';
 

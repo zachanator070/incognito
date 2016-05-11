@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 import {createChangeGameStateAction, GameStates} from '../actions/actions';
 
-import {store} from '../socket';
+import socket,{store} from '../socket';
 
 import Playing from '../components/Playing';
 
