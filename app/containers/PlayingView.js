@@ -6,6 +6,8 @@ import $ from 'jquery';
 
 import {createChangeGameStateAction, GameStates} from '../actions/actions';
 
+import {store} from '../store';
+
 import Playing from '../components/Playing';
 
 const mapStateToProps = (state) => {
