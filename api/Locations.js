@@ -27,7 +27,6 @@ var locations = {
 		"Bomb Bay Controller",
 		"Navigator",
 		"Paratrooper Captain"
-	
 	],
 	"Renaissance Fair":[
 		"Knight",
@@ -40,7 +39,6 @@ var locations = {
 		"Guy Selling Squirrel on a Stick",
 		"Squire",
 		"Jousting Announcer"
-	
 	],
 	"Comic Con":[
 		"Mario",
@@ -53,7 +51,6 @@ var locations = {
 		"Spiderman",
 		"Superman",
 		"Wolverine"
-		
 	],
 	"Mines of Moria":[
 		"Gandalf",
@@ -66,7 +63,6 @@ var locations = {
 		"Balrog",
 		"Legolas",
 		"Gimli"
-
 	],
 	"Bespin Cloud City":[
 		"Luke",
@@ -79,38 +75,90 @@ var locations = {
 		"Darth Vadar",
 		"Boba Fett",
 		"Storm Trooper"
+	],
+	"Cruise Ship":[
+		"Captain",
+		"First Mate",
+		"Gourmet Chef",
+		"Tour Guide",
+		"Tourist",
+		"Deck Hand",
+		"Exotic Dancer",
+		"Mariachi Band Member",
+		"Gambler",
+		"Stow Away"
+	],
+	"Star Killer Base":[
+		'Kylo Ren',
+		'Rey',
+		'Finn',
+		'Han Solo',
+		'Chewbacca',
+		'Strom Trooper',
+		'Captain Phasma',
+		'New Order Officer',
+		'Janitor',
+		'Plasma Cannon Opperator'
+	],
+	'Mideval Castle':[
+		'King',
+		'Knight',
+		'Peasant',
+		'Squire',
+		'Queen',
+		'Wall Guard',
+		'Stable Man',
+		'Bartender',
+		'King\'s Consult',
+		'Town Drunk'
+	],
+	'Hoth Rebel Base':[
+		"Luke",
+		"Leia",
+		"Han Solo",
+		"Chewbacca",
+		"C-3PO",
+		"R-2D2",
+		"Darth Vadar",
+		"Taun-Taun",
+		"AT-AT",
+		"Imperial Snow Trooper"
+	],
+	"Minus Tirith":[
+		"Gandalf",
+		"Pippen",
+		"Steward of Gondor",
+		"Aragorn",
+		"Army of the Dead",
+		"Haradrim Pirate",
+		"Mumakil",
+		"Attack Troll",
+		"Orc",
+		"Lich King"
 	]
-
-
 
 };
 
 exports.getRandomLocation = function(newLocations){
 
 	var randomIndex = Math.floor(Math.random()*newLocations.length);
-	
+
 	return newLocations[randomIndex];
 
 }
 
 exports.getRandomLocations = function(){
 
-	//does not gaurantee a certain number of locations to be given
+	var locationNames = Object.keys(locations);
+	// var numLocations = Math.ceil(locationNames.length * .5);
+	var numLocations = 10;
 
 	var randomLocs = [];
 
-	for(key in locations){
-			
-		if(!locations.hasOwnProperty(key)){
-			continue;
-		}
-		
-
-		var rand = Math.random();
-
-		if(rand>.5){
-			randomLocs.push(key);
-		}
+	for(var x=0;x<numLocations;x++){
+		var randomIndex = Math.floor(Math.random()*locationNames.length);
+		randomLocs.push(locationNames[randomIndex]);
+		locationNames.splice(randomIndex,1);
 	}
 
 	return randomLocs;
@@ -119,18 +167,16 @@ exports.getRandomLocations = function(){
 
 exports.getRandomRoles = function(location, numPlayers){
 
-	//not the most effecient thing I have written
+	var roles = locations[location].slice();
 
-	var roles = locations[location];
+	var newRoles = [];
 
-	var newRoles = new Set();
-
-	while(newRoles.size < numPlayers){
-
+	for(var x=0;x<numPlayers;x++){
 		var randomIndex = Math.floor(Math.random()*roles.length);
-
-		newRoles.add(roles[randomIndex]);
+		newRoles.push(locationNames[randomIndex]);
+		roles.splice(randomIndex,1);
 	}
 
-	return [...newRoles];
+	return newRoles;
+	
 }
