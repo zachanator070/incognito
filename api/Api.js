@@ -189,6 +189,7 @@ Api.post('/games/start', (req,res) => {
     let newRoles = [];
 
     let spyIndex = Math.random()*players.length;
+    debugger;
 
     newRoles.push({player:players[spyIndex], role: "Spy"});
     players.splice(spyIndex,1);
