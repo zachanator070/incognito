@@ -24,7 +24,7 @@ export function createJoinGameAction(gameId, creator, username, players,location
 }
 
 export function createChangeGameStateAction(gameState, role=''){
-
+	debugger;
 	return {type: CHANGE_GAME_STATE, gameState: gameState, role: role};
 }
 
