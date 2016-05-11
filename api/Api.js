@@ -188,7 +188,7 @@ Api.post('/games/start', (req,res) => {
     let roles = Locations.getRandomRoles(game.location, game.players.length-1);
     let newRoles = [];
 
-    let spyIndex = Math.random()*players.length;
+    let spyIndex = Math.floor(Math.random()*players.length);
     debugger;
 
     newRoles.push({player:players[spyIndex], role: "Spy"});
