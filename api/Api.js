@@ -183,7 +183,7 @@ Api.post('/games/start', (req,res) => {
 
     console.log('players before start: '+game.players);
 
-    let players = game.players;
+    let players = game.players.slice();
 
     let roles = Locations.getRandomRoles(game.location, game.players.length-1);
     let newRoles = [];
