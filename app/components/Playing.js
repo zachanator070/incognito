@@ -57,8 +57,8 @@ class PlayingView extends Component{
 				username: {this.props.username}<br/>
 				location: {this.renderLocation()}<br/>
 				role: {this.props.role}<br/>
-				
-				players: <br/>
+
+				players:
 				<ul>
 					{this.renderPlayers(this.props.players)}
 				</ul>

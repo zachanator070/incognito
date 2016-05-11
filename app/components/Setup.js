@@ -32,8 +32,8 @@ class Setup extends Component{
 			<div>
 				gameId: {this.props.gameId}<br/>
 				creator: {this.props.creator}<br/>
-
-				players: <br/>
+				username: {this.props.username}<br/>
+				players:
 				<ul>
 					{this.renderPlayers(this.props.players)}
 				</ul>
