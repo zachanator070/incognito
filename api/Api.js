@@ -181,6 +181,8 @@ Api.post('/games/start', (req,res) => {
 			return res.send(404);
 		}
 
+    console.log('players before start: '+game.players);
+
     let players = game.players;
 
     let roles = Locations.getRandomRoles(game.location, game.players.length-1);
@@ -196,7 +198,7 @@ Api.post('/games/start', (req,res) => {
         let roleIndex = Math.random()*roles.length;
         newRoles.push({player:player, role: roles[roleIndex]});
         roles.splice(roleIndex,1);
-        
+
     });
 
     game.roles = newRoles;
@@ -209,6 +211,7 @@ Api.post('/games/start', (req,res) => {
 
     });
 
+    console.log('players after start: '+game.players);
     console.log("finished starting game");
 		return res.status(200).json(game);
 
