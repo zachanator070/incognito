@@ -215,7 +215,7 @@ Api.post('/games/start', (req,res) => {
 
 Api.post('/games/end', (req,res) => {
 
-	Game.findOneAndUpdate({gameId: req.body.gameId},{ $set: {state:'SETUP',roles:[],location='',possibleLocations=[]}}, (err, game) =>{
+	Game.findOneAndUpdate({gameId: req.body.gameId},{ $set: {state:'SETUP',roles=[],location='',possibleLocations=[]}}, (err, game) =>{
 
 		if(err){
 			return res.send(400);
