@@ -76,7 +76,8 @@ socket.on('START_GAME',()=>{
 
 socket.on('END_GAME', ()=>{
 
-	store.dispatch(createChangeGameStateAction(GameState.SETUP));
+	console.log('got END_GAME event from server');
+	store.dispatch(createChangeGameStateAction(GameStates.SETUP));
 	browserHistory.push("/setup");
 });
 
