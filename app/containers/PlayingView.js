@@ -8,6 +8,8 @@ import Playing from '../components/Playing';
 
 const mapStateToProps = (state) => {
 
+	console.log(JSON.stringify(state));
+
 	return {
 		gameId: state.gameId,
 		creator: state.creator,
