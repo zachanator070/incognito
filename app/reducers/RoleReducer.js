@@ -7,6 +7,7 @@ function RoleReducer(role='', action){
 		case LEAVE_GAME:
 			return '';
 		case CHANGE_GAME_STATE:
+			console.log('reducer is updating role in state to be '+action.role);
 			return action.role;
 
 		default:
