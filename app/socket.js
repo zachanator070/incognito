@@ -50,6 +50,8 @@ socket.on('GAME_CLOSED',()=>{
 
 socket.on('START_GAME',()=>{
 
+	console.log('got START_GAME event from server');
+
 		$.ajax({
 			contentType: 'application/json',
 			headers: {gameId: store.getState().gameId},

@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) =>{
 				method: "post",
 				url: "/games/start",
 				success: (data,status)=>{
-					console.log("got back status:"+status+" with data: \n gameId:"+data.gameId+"\n creator: "+data.creator+"\n player username: "+data.creator+"\n players in game:"+data.players+"\n possible locations:" +data.possibleLocations+"\n current location:"+data.location);
+					console.log("got back status:"+status+" with data: \n gameId:"+data.gameId+"\n creator: "+data.creator+"\n player username: "+data.creator+"\n players in game:"+data.players+"\n possible locations:" +data.possibleLocations+"\n current location:"+data.location+"\n game state:"+data.state);
 					socket.emit('START_GAME',store.getState().gameId);
 				},
 				error: (req,error)=>{console.log('unable to start game, got message: '+error);}
