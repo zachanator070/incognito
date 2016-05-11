@@ -1,4 +1,4 @@
-import {JOIN_GAME,LEAVE_GAME} from '../actions/actions';
+import {JOIN_GAME,LEAVE_GAME,CHANGE_GAME_STATE} from '../actions/actions';
 
 function RoleReducer(role='', action){
 
