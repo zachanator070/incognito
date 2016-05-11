@@ -149,6 +149,8 @@ exports.getRandomLocation = function(newLocations){
 
 exports.getRandomLocations = function(){
 
+	debugger;
+
 	var locationNames = Object.keys(locations);
 	// var numLocations = Math.ceil(locationNames.length * .5);
 	var numLocations = 10;
@@ -178,5 +180,5 @@ exports.getRandomRoles = function(location, numPlayers){
 	}
 
 	return newRoles;
-	
+
 }
