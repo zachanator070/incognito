@@ -130,11 +130,23 @@ var locations = {
 		"Steward of Gondor",
 		"Aragorn",
 		"Army of the Dead",
-		"Haradrim Pirate",
+		"Corsair or Umbar",
 		"Mumakil",
 		"Attack Troll",
 		"Orc",
 		"Lich King"
+	],
+	'Death Star':[
+		'Luke',
+		'Emporer Palpitine',
+		'Darth Vadar',
+		'Admiral Akbar',
+		'Lando Calrissian',
+		'Wedge Antilles',
+		'Tie Fighter Pilot',
+		'Imperial Guard',
+		'X-Wing Pilot',
+		'Storm Trooper'
 	]
 
 };
@@ -148,8 +160,6 @@ exports.getRandomLocation = function(newLocations){
 }
 
 exports.getRandomLocations = function(){
-
-	debugger;
 
 	var locationNames = Object.keys(locations);
 	// var numLocations = Math.ceil(locationNames.length * .5);
