@@ -58,7 +58,7 @@ socket.on('START_GAME',()=>{
 			method: "get",
 			url: "/games",
 			success: (data,status)=>{
-				console.log("got back status:"+status+" with data: \n gameId:"+data.gameId+"\n creator: "+data.creator+"\n player username: "+data.creator+"\n players in game:"+data.players+"\n possible locations:" +data.possibleLocations+"\n current location:"+data.location+"\n roles:"+data.roles);
+				console.log("got back status:"+status+" with data: \n gameId:"+data.gameId+"\n creator: "+data.creator+"\n player username: "+data.creator+"\n players in game:"+data.players+"\n possible locations:" +data.possibleLocations+"\n current location:"+data.location+"\n roles:"+JSON.stringify(data.roles));
 				let myRole = '';
 				data.roles.forEach((role, index)=>{
 					if(role.player == store.getState().username){
