@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) =>{
 		onEndGame: () => {
 			//need to put request to server here to end the game
 			dispatch(createChangeGameStateAction(GameState.SETUP));
-		},
+		}
 	}
 
 }

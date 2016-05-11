@@ -9,7 +9,7 @@ class PlayingView extends Component{
 			return (<ActionButton onclick={this.props.onEndGame} value="End Game"/>);
 		}
 		else{
-			return;
+			return "";
 		}
 	}
 
