@@ -63,6 +63,7 @@ socket.on('START_GAME',()=>{
 				data.roles.forEach((role, index)=>{
 					if(role.player == store.getState().username){
 						myRole = role.role;
+						console.log('my role is '+myRole);
 					}
 				});
 				store.dispatch(createChangeGameStateAction(GameStates.PLAYING, myRole));
