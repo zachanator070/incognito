@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
 		gameId: state.gameId,
 		creator: state.creator,
 		players: state.players,
-		username: state.username
+		username: state.username,
+		possibleLocations: state.possibleLocations
 		}
 
 }

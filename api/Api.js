@@ -184,21 +184,22 @@ Api.post('/games/start', (req,res) => {
     let players = game.players;
 
     let roles = Locations.getRandomRoles(game.location, game.players.length-1);
+    let newRoles = [];
 
     let spyIndex = Math.random()*players.length;
 
-    players[spyIndex] = {player:players[spyIndex], role: "Spy"}
+    newRoles.push({player:players[spyIndex], role: "Spy"});
+    players.splice(spyIndex,1);
 
-    players.map((player)=>{
-      if(player.role == undefined){
+    players.forEach((player,index)=>{
+
         let roleIndex = Math.random()*roles.length;
+        newRoles.push({player:player, role: roles[roleIndex]});
         roles.splice(roleIndex,1);
-        return {player:player, role: roles[roleIndex]};
-      }
-      return player;
+        
     });
 
-    game.roles = players;
+    game.roles = newRoles;
 
     game.save((err)=>{
 
