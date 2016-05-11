@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import $ from 'jquery';
+
 import {createChangeGameStateAction, GameStates} from '../actions/actions';
 
 import Playing from '../components/Playing';
@@ -42,7 +44,7 @@ const mapDispatchToProps = (dispatch) =>{
 
 		}
 	}
-	
+
 }
 
 const PlayingView =  connect(

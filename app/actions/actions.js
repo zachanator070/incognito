@@ -22,7 +22,7 @@ export function createJoinGameAction(gameId, creator, username, players){
 }
 
 export function createChangeGameStateAction(gameState, location='', possibleLocations=[],role=''){
-	console.log('creating action with role:'+role);
+	console.log('creating action with location:'+location);
 	return {type: CHANGE_GAME_STATE,
 		 gameState: gameState,
 		 location:location,
