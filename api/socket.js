@@ -62,6 +62,7 @@ io.on('connection', (socket) => {
   socket.on('START_GAME', (gameId) =>{
 
     console.log('got START_GAME for game: '+gameId);
+    socket.emit('START_GAME');
     socket.to(gameId).emit('START_GAME');
 
   });

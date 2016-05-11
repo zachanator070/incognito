@@ -169,7 +169,7 @@ Api.post('/games/start', (req,res) => {
 
 	Game.findOneAndUpdate({gameId: req.body.gameId},{ $set: {state:'PLAYING'}}, (err, game) =>{
 
-    console.log('player '+req.body.player+' leaving game: '+req.body.gameId);
+    console.log('starting game: '+req.body.gameId);
 
 		if(err){
       console.log('sent 400');
@@ -208,6 +208,7 @@ Api.post('/games/start', (req,res) => {
 
     });
 
+    console.log("finished starting game");
 		return res.status(200).json(game);
 
 	});
