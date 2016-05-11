@@ -6,6 +6,8 @@ function RoleReducer(role='', action){
 
 		case LEAVE_GAME:
 			return '';
+		case CHANGE_GAME_STATE:
+			return action.role;
 
 		default:
 			return role;

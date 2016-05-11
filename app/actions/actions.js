@@ -23,9 +23,9 @@ export function createJoinGameAction(gameId, creator, username, players,location
 		creator:creator};
 }
 
-export function createChangeGameStateAction(gameState){
+export function createChangeGameStateAction(gameState, role=''){
 
-	return {type: CHANGE_GAME_STATE, gameState: gameState};
+	return {type: CHANGE_GAME_STATE, gameState: gameState, role: role};
 }
 
 export function createPlayerJoinedAction(player){

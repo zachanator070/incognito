@@ -57,6 +57,16 @@ io.on('connection', (socket) => {
   });
 
   //
+  // When a host starts a game
+  //
+  socket.on('START_GAME', (gameId) =>{
+
+    console.log('got START_GAME for game: '+gameId);
+    socket.to(gameId).emit('START_GAME');
+
+  });
+
+  //
   // when a user disconnects
   //
   socket.on('disconnect', ()=>{

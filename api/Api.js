@@ -103,6 +103,10 @@ Api.post('/games/join', (req,res) => {
         return res.status(400).send('Username already exists');
       }
 
+      if(game.players.length > 10){
+        return res.status(400).send('Too many players');
+      }
+
       game.players = [...game.players, req.body.player];
 
       game.save((err)=>{
@@ -134,7 +138,7 @@ Api.post('/games/leave', (req,res) => {
 	*/
 
 
-	Game.findOneAndUpdate({gameId: req.body.gameId},{ $pull: {players:req.body.player}}, (err, results) =>{
+	Game.findOneAndUpdate({gameId: req.body.gameId},{ $pull: {players:req.body.player}}, (err, game) =>{
 
     console.log('player '+req.body.player+' leaving game: '+req.body.gameId);
 
@@ -143,12 +147,12 @@ Api.post('/games/leave', (req,res) => {
 			return res.send(400);
 		}
 
-		if(!results){
+		if(!game){
       console.log('sent 404');
 			return res.sendStatus(404);
 		}
 
-		return res.status(200).json(results);
+		return res.status(200).json(game);
 
 	});
 
@@ -163,7 +167,7 @@ Api.post('/games/start', (req,res) => {
 	*/
 
 
-	Game.update({gameId: req.body.gameId},{ $set: {state:'PLAYING'}}, (err, results) =>{
+	Game.findOneAndUpdate({gameId: req.body.gameId},{ $set: {state:'PLAYING'}}, (err, game) =>{
 
     console.log('player '+req.body.player+' leaving game: '+req.body.gameId);
 
@@ -172,12 +176,39 @@ Api.post('/games/start', (req,res) => {
 			return res.send(400);
 		}
 
-		if(!results){
+		if(!game){
       console.log('sent 404');
 			return res.send(404);
 		}
 
-		return res.status(200).json(results);
+    let players = game.players;
+
+    let roles = Locations.getRandomRoles(game.location, game.players.length-1);
+
+    let spyIndex = Math.random()*players.length;
+
+    players[spyIndex] = {player:players[spyIndex], role: "Spy"}
+
+    players.map((player)=>{
+      if(player.role == undefined){
+        let roleIndex = Math.random()*roles.length;
+        roles.splice(roleIndex,1);
+        return {player:player, role: roles[roleIndex]};
+      }
+      return player;
+    });
+
+    game.roles = players;
+
+    game.save((err)=>{
+
+      if(err){
+        return res.sendStatus(500);
+      }
+
+    });
+
+		return res.status(200).json(game);
 
 	});
 
