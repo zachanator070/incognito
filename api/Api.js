@@ -196,7 +196,7 @@ Api.post('/games/start', (req,res) => {
 
     players.forEach((player,index)=>{
         console.log('adding role for player: '+player);
-        let roleIndex = Math.random()*roles.length;
+        let roleIndex = Math.floor(Math.random()*roles.length);
         newRoles.push({player:player, role: roles[roleIndex]});
         roles.splice(roleIndex,1);
 
