@@ -26,11 +26,23 @@ const mapDispatchToProps = (dispatch) =>{
 
 	return {
 		onEndGame: () => {
-			//need to put request to server here to end the game
-			dispatch(createChangeGameStateAction(GameState.SETUP));
+
+			$.ajax({
+				contentType: 'application/json',
+				data: JSON.stringify({gameId:  store.getState().gameId}),
+				method: "post",
+				url: "/games/end",
+				success: (data,status)=>{
+					console.log("got back status:"+status+" with data: "+JSON.stringify(data));
+					socket.emit('END_GAME',store.getState().gameId);
+				},
+				error: (req,error)=>{console.log('unable to start game, got message: '+error);}
+
+			});
+
 		}
 	}
-
+	
 }
 
 const PlayingView =  connect(

@@ -1,11 +1,11 @@
 
-import {JOIN_GAME, LEAVE_GAME} from '../actions/actions';
+import {JOIN_GAME, LEAVE_GAME, GAME_STATE_CHANGE} from '../actions/actions';
 
 function LocationReducer(location='', action){
 
 	switch(action.type){
 
-		case JOIN_GAME:
+		case GAME_STATE_CHANGE:
 			return action.location;
 
 		case LEAVE_GAME:

@@ -12,20 +12,22 @@ export const GameStates = {
 
 }
 
-export function createJoinGameAction(gameId, creator, username, players,location, possibleLocations){
+export function createJoinGameAction(gameId, creator, username, players){
 
 	return {type: JOIN_GAME,
 		gameId: gameId,
 		username: username,
 		players: players,
-		location: location,
-		possibleLocations: possibleLocations,
 		creator:creator};
 }
 
-export function createChangeGameStateAction(gameState, role=''){
+export function createChangeGameStateAction(gameState, location='', possibleLocations=[],role=''){
 	console.log('creating action with role:'+role);
-	return {type: CHANGE_GAME_STATE, gameState: gameState, role: role};
+	return {type: CHANGE_GAME_STATE,
+		 gameState: gameState,
+		 location:location,
+		 possibleLocations:possibleLocations,
+		 role: role};
 }
 
 export function createPlayerJoinedAction(player){

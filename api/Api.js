@@ -21,17 +21,14 @@ Api.use(bodyParser.urlencoded({
 Api.use(Express.static('public'));
 
 
-Api.put('/games',(req,res) => {
-	/* request should have a body that is formatted:
-		{
-			username: value
-		}
-	*/
-	//console.log("got info "+req.body);
+/* request should have a body that is formatted:
+  {
+    username: value
+  }
+*/
 
-	var possibleLocations = Locations.getRandomLocations();
-	console.log("locations generated: "+possibleLocations);
-	var location = Locations.getRandomLocation(possibleLocations);
+Api.put('/games',(req,res) => {
+
   var gameId = RandomId();
   while(Game.where({gameId:gameId}).count() >0){
     gameId = RandomId();
@@ -40,8 +37,6 @@ Api.put('/games',(req,res) => {
 	Game.create({creator: req.body.username,
     gameId: gameId,
     players:[req.body.username],
-    possibleLocations:[...possibleLocations],
-    location: location,
     state: "SETUP"},
   (err, results) =>{
 
@@ -56,15 +51,13 @@ Api.put('/games',(req,res) => {
 
 });
 
+/* request should have a header that is formatted:
+  {
+    gameId: value
+  }
+*/
 
 Api.get('/games', (req,res) =>{
-
-
-	/* request should have a header that is formatted:
-		{
-			gameId: value
-		}
-	*/
 
 	Game.findOne({gameId:req.get('gameId')}, (err, results) =>{
 
@@ -81,15 +74,14 @@ Api.get('/games', (req,res) =>{
 
 });
 
+/* request should have a body that is formatted:
+  {
+    gameId: value,
+    player: value
+  }
+*/
 
 Api.post('/games/join', (req,res) => {
-
-	/* request should have a body that is formatted:
-		{
-			gameId: value,
-			player: value
-		}
-	*/
 
 	Game.findOne({gameId: req.body.gameId}, (err, game) =>{
 
@@ -128,27 +120,22 @@ Api.post('/games/join', (req,res) => {
 
 });
 
+/* request should have a body that is formatted:
+  {
+    gameId: value,
+    player: value
+  }
+*/
+
 Api.post('/games/leave', (req,res) => {
-
-	/* request should have a body that is formatted:
-		{
-			gameId: value,
-			player: value
-		}
-	*/
-
 
 	Game.findOneAndUpdate({gameId: req.body.gameId},{ $pull: {players:req.body.player}}, (err, game) =>{
 
-    console.log('player '+req.body.player+' leaving game: '+req.body.gameId);
-
 		if(err){
-      console.log('sent 400');
 			return res.send(400);
 		}
 
 		if(!game){
-      console.log('sent 404');
 			return res.sendStatus(404);
 		}
 
@@ -158,30 +145,33 @@ Api.post('/games/leave', (req,res) => {
 
 });
 
+/* request should have a body that is formatted:
+  {
+    gameId: value
+  }
+*/
+
 Api.post('/games/start', (req,res) => {
-
-	/* request should have a body that is formatted:
-		{
-			gameId: value
-		}
-	*/
-
 
 	Game.findOneAndUpdate({gameId: req.body.gameId},{ $set: {state:'PLAYING'}}, (err, game) =>{
 
-    console.log('starting game: '+req.body.gameId);
-
 		if(err){
-      console.log('sent 400');
 			return res.send(400);
 		}
 
 		if(!game){
-      console.log('sent 404');
 			return res.send(404);
 		}
 
-    console.log('players before start: '+game.players);
+    //generate location and possible Locations
+
+    var possibleLocations = Locations.getRandomLocations();
+    var location = Locations.getRandomLocation(possibleLocations);
+
+    game.possibleLocations =[...possibleLocations];
+    game.location= location;
+
+    //start to generate roles for each player
 
     let players = game.players.slice();
 
@@ -189,22 +179,20 @@ Api.post('/games/start', (req,res) => {
     let newRoles = [];
 
     let spyIndex = Math.floor(Math.random()*players.length);
-    debugger;
 
     newRoles.push({player:players[spyIndex], role: "Spy"});
     players.splice(spyIndex,1);
 
     players.forEach((player,index)=>{
-        console.log('adding role for player: '+player);
         let roleIndex = Math.floor(Math.random()*roles.length);
         newRoles.push({player:player, role: roles[roleIndex]});
         roles.splice(roleIndex,1);
 
     });
 
-    console.log('new roles looks like: '+JSON.stringify(newRoles));
     game.roles = newRoles;
 
+    //save changes
     game.save((err)=>{
 
       if(err){
@@ -213,21 +201,43 @@ Api.post('/games/start', (req,res) => {
 
     });
 
-    console.log('players after start: '+game.players);
-    console.log("finished starting game");
 		return res.status(200).json(game);
 
 	});
 
 });
 
-Api.delete('/games', (req,res) => {
+/* request should have a body that is formatted:
+  {
+    gameId: value
+  }
+*/
 
-  /* request should have a header that is formatted:
-    {
-      gameId: value
-    }
-  */
+Api.post('/games/end', (req,res) => {
+
+	Game.findOneAndUpdate({gameId: req.body.gameId},{ $set: {state:'SETUP',roles:[],location='',possibleLocations=[]}}, (err, game) =>{
+
+		if(err){
+			return res.send(400);
+		}
+
+		if(!game){
+			return res.send(404);
+		}
+
+		return res.status(200).json(game);
+
+	});
+
+});
+
+/* request should have a header that is formatted:
+  {
+    gameId: value
+  }
+*/
+
+Api.delete('/games', (req,res) => {
 
   Game.remove({gameId:req.get('gameId')}, (err,results) => {
 

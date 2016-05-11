@@ -58,7 +58,7 @@ socket.on('START_GAME',()=>{
 			method: "get",
 			url: "/games",
 			success: (data,status)=>{
-				console.log("got back status:"+status+" with data: \n gameId:"+data.gameId+"\n creator: "+data.creator+"\n player username: "+data.creator+"\n players in game:"+data.players+"\n possible locations:" +data.possibleLocations+"\n current location:"+data.location+"\n roles:"+JSON.stringify(data.roles));
+				console.log("got back status:"+status+" with data: "+JSON.stringify(data));
 				let myRole = '';
 				data.roles.forEach((role, index)=>{
 					if(role.player == store.getState().username){
@@ -66,14 +66,18 @@ socket.on('START_GAME',()=>{
 						console.log('my role is '+myRole);
 					}
 				});
-				store.dispatch(createChangeGameStateAction(GameStates.PLAYING, myRole));
+				store.dispatch(createChangeGameStateAction(GameStates.PLAYING, data.location,data.possibleLocations,myRole));
 				browserHistory.push("/playing");
 			},
 			error: (req,error)=>{console.log('unable to start game, got message: '+error);}
 		});
 
+});
 
+socket.on('END_GAME', ()=>{
 
+	store.dispatch(createChangeGameStateAction(GameState.SETUP));
+	browserHistory.push("/setup");
 });
 
 export default socket;
