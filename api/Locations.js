@@ -185,7 +185,7 @@ exports.getRandomRoles = function(location, numPlayers){
 
 	for(var x=0;x<numPlayers;x++){
 		var randomIndex = Math.floor(Math.random()*roles.length);
-		newRoles.push(locationNames[randomIndex]);
+		newRoles.push(roles[randomIndex]);
 		roles.splice(randomIndex,1);
 	}
 
