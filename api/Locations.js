@@ -100,7 +100,7 @@ var locations = {
 		'Janitor',
 		'Plasma Cannon Opperator'
 	],
-	'Mideval Castle':[
+	'Medieval Castle':[
 		'King',
 		'Knight',
 		'Peasant',
@@ -124,7 +124,7 @@ var locations = {
 		"AT-AT",
 		"Imperial Snow Trooper"
 	],
-	"Minus Tirith":[
+	"Minas Tirith":[
 		"Gandalf",
 		"Pippen",
 		"Steward of Gondor",
