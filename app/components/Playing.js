@@ -1,8 +1,35 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
 
 import ActionButton from './ActionButton';
 
 class PlayingView extends Component{
+
+	startTimer(duration, display){
+
+		//duration is in seconds
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = 0;
+        }
+    }, 1000);
+
+	}
+
+	componentDidMount(){
+
+		this.startTimer(60,$('#countdown'));
+
+	}
 
 	renderEndGameButton(){
 		if(this.props.creator == this.props.username){
@@ -21,7 +48,7 @@ class PlayingView extends Component{
 		else{
 			return (
 				<div>
-					{this.props.location}
+					location:{this.props.location}
 				</div>
 			);
 		}
@@ -52,10 +79,11 @@ class PlayingView extends Component{
 
 		return (
 			<div>
+				timeleft: <div id='countdown'></div><br/>
 				gameId: {this.props.gameId}<br/>
 				creator: {this.props.creator}<br/>
 				username: {this.props.username}<br/>
-				location: {this.renderLocation()}<br/>
+				{this.renderLocation()}<br/>
 				role: {this.props.role}<br/>
 
 				players:
