@@ -43,7 +43,7 @@ var locations = {
 	"Comic Con":[
 		"Mario",
 		"Master Chief",
-		"Solid Snake",
+		"Harry Potter",
 		"Homer Simpson",
 		"Ash Ketchum",
 		"Goku",
@@ -147,8 +147,115 @@ var locations = {
 		'Imperial Guard',
 		'X-Wing Pilot',
 		'Storm Trooper'
+	],
+	'Murder Mystery Party':[
+		'Murderer',
+		'Host of the Party',
+		'Cocktail Waitress',
+		'Senator',
+		'Neighbor of the Host',
+		'Butler',
+		'Wife of the Senator',
+		'Private Investigator',
+		'Mistress of the Host',
+		'Gardener'
+	],
+	'5 Star Restaurant':[
+		'Head Chef',
+		'Waiter',
+		'Sous Chef',
+		'Bus Boy',
+		'Hostess',
+		'Restaurant Owner',
+		'Customer',
+		'Food Critique',
+		'Piano Player',
+		'Washroom Attendant'
+	],
+	'Casino':[
+		'Bartender',
+		'Floor Manager',
+		'High Roller Gambler',
+		'Bouncer',
+		'Security Guard',
+		'Poker Dealer',
+		'Back Room Gambler',
+		'Investment Banker',
+		'Senator',
+		'Card Counter'
+	],
+	'Avenger Tower':[
+		'Tony Stark',
+		'Captain America',
+		'Black Widow',
+		'Hawkeye',
+		'Hulk',
+		'Thor',
+		'Ant Man',
+		'Spiderman',
+		'Nick Fury',
+		'Black Panther'
+	],
+	'Hogwarts':[
+		'Hary Potter',
+		'Hermione Granger',
+		'Ron Weasley',
+		'Neville Longbottom',
+		'Severus Snape',
+		'Albus Dumbledore',
+		'Doby the House Elf',
+		'Rubeus Hagrid',
+		'Draco Malfoy',
+		'Minerva McGonagall'
+	],
+	'Xavier\'s School for Gifted Youngsters':[
+		'Dr Xavier',
+		'Wolverine',
+		'Storm',
+		'Cyclops',
+		'Rogue',
+		'Ice Man',
+		'Colossus',
+		'Magneto',
+		'Jean Gray',
+		'Nightcrawler'
+	],
+	'Pallet Town':[
+		'Ash Ketchum',
+		'Ash\'s Mom',
+		'Mr. Mime',
+		'Professor Oak',
+		'Misty',
+		'Brock',
+		'Gary Oak',
+		'Pikachu',
+		'Officer Jenny',
+		'Nurse Joy'
+	],
+	'Hockey Game':[
+		'Center',
+		'Wingman',
+		'Defender',
+		'Goalie',
+		'Coach',
+		'Loadmouth Hockey Fan',
+		'Consession Employee',
+		'Zamboni Driver',
+		'Team Owner',
+		'EMT'
+	],
+	'Apollo 11 Launch Site':[
+		'Launch Controller',
+		'Flight Path Navigator',
+		'Lance Armstrong',
+		'Buzz Aldrin',
+		'NASA CEO',
+		'Rocket Engineer',
+		'Saftey Inspector',
+		'Launch Spectator',
+		'TV Cameraman',
+		'Comms Technician'
 	]
-
 };
 
 exports.getRandomLocation = function(newLocations){
