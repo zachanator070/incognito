@@ -24,27 +24,27 @@ module.exports = {
       	loader: "babel-loader",
       	query: {
       	   presets: ['react', 'es2015','stage-1']
-	}
+	      }
       },
       // loader for HTML
       {
       	test: /\.html$/,
       	loader: "file-loader?name=[name].[ext]",
       },
-      // loaders for Bootstrap CSS
-      // {test: /\.css$/,loader: 'style-loader!css-loader'},
-      {test: /\.scss$/,loader: 'style-loader!css-loader!sass-loader?includePaths[]=' +
-        path.resolve(__dirname, "./node_modules/bootstrap-sass/assets/stylesheets/")},
-      { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.woff2$|\.eot$/, loader: "file" }
-      // {test: /\.less$/,loader: 'style-loader!css-loader!less-loader'},
-      // { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?name=assets/[name].[ext]" },
-      // { test: /\.(woff|woff2)$/, loader:"url-loader?name=assets/[name].[ext]&prefix=font/&limit=5000" },
-      // { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?name=assets/[name].[ext]&limit=10000&mimetype=application/octet-stream" },
-      // { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?name=assets/[name].[ext]&limit=10000&mimetype=image/svg+xml" },
-      // { test: /\.png$/, loader: "url-loader?mimetype=image/png" }
+      // loaders for SCSS
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader','css-loader','sass-loader']
+      },
+      // loaders for images and font files
+      {
+        test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.woff2$|\.eot$/,
+        loader: "file-loader?name=assets/[name].[ext]"
+      }
     ],
   },
-  /*sassLoader: {
+  sassLoader: {
+    // include bootstrap when looking for sass modules
     includePaths: [path.resolve(__dirname, "node_modules/bootstrap-sass/assets/stylesheets/")]
-  }*/
+  }
 }
