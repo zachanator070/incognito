@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {Link, browserHistory} from 'react-router';
 
-import Bootstrap from "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+import Bootstrap from "bootstrap-sass";
 import SCSS from "../css/app.scss";
 
 class MainMenu extends Component{

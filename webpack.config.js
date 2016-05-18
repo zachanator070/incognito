@@ -1,7 +1,5 @@
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
-console.log("CURRENT DIR IS "+__dirname);
-
 module.exports = {
   context: __dirname + "/app",
   entry: {
