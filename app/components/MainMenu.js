@@ -3,13 +3,11 @@
 import React, {Component} from 'react';
 import {Link, browserHistory} from 'react-router';
 
-import Bootstrap from "bootstrap-sass";
-import SCSS from "../css/app.scss";
-
 class MainMenu extends Component{
 
   render(){
     return <div>
+      <div className='title'>Incognito</div>
       <Link to="/createGame">
         <div className="row">
           <div className="btn btn-default">Create Game</div>

@@ -1,5 +1,8 @@
-@import 'bootstrap-sass';
+$icon-font-path: "../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+@import 'bootstrap';
 
-.someclass{
-  color: white;
+$titleColor: grey;
+
+.title{
+  color: $titleColor;
 }

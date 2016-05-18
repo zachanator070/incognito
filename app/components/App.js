@@ -20,6 +20,9 @@ import AppReducer from '../reducers/AppReducer';
 
 import {store} from '../socket';
 
+// import Bootstrap from "bootstrap-sass";
+import SCSS from "../css/app.scss";
+
 var App = (
 	<Provider store={store}>
 		<Router history={browserHistory}>
