@@ -129,7 +129,16 @@ io.on('connection', (socket) => {
       else if(response.statusCode==200){
         console.log('data got back: '+ data);
         console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
-        if(JSON.parse(data)['creator'] == player){
+
+        let isSpy = false;
+
+        JSON.parse(data).roles.forEach((role, index)=>{
+          if(role.player == player && role.role == 'Spy'){
+            isSpy=true;
+          }
+        });
+
+        if(JSON.parse(data).creator == player || isSpy){
           console.log('host left the game '+gameId);
           socket.to(gameId).emit("GAME_CLOSED");
           deleteGame(gameId);
