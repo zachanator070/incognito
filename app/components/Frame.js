@@ -6,7 +6,7 @@ class Frame extends Component{
 
   render(){
 	return (
-			<div>
+			<div className='col-xs-12 content'>
         			{this.props.children}
 			</div>
 	);

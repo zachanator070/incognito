@@ -1,8 +1,113 @@
 $icon-font-path: "../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 @import 'bootstrap';
+@import url(https://fonts.googleapis.com/css?family=Armata|Muli);
+
+// main menu styles
 
 $titleColor: grey;
 
 .title{
   color: $titleColor;
+  font-family: 'Armata', sans-serif;
+  font-size: 30px;
+  text-decoration-color: white;
+  text-decoration: line-through white;
+  padding-top: 10%;
+  padding-bottom: 5%;
+}
+
+@keyframes showHelp {
+    from {
+      visibility: hidden;
+      top: 100%;
+      opacity: 0;
+    }
+    to {
+      visibility: visible;
+      top: 0%;
+      opacity: 1;
+    }
+}
+
+@keyframes hideHelp {
+    from {
+      visibility: visible;
+      top: 0%;
+      opacity: 1;
+    }
+    to {
+      visibility: hidden;
+      top: 100%;
+      opacity: 0;
+    }
+}
+
+.help{
+  border: 5px solid #808080;
+  visibility: hidden;
+  position:absolute;
+  top: 100%;
+  background-color: white;
+  animation-duration: 1s;
+  opacity: 0;
+  border-radius:10px;
+}
+
+
+// global style
+
+//transition from view to view
+
+@keyframes slideLeft {
+    from {
+      visibility: hidden;
+      left: 100%;
+      position:absolute;
+      opacity: 0;
+    }
+    to {
+      visibility: visible;
+      left: 0%;
+      position:relative;
+      opacity: 1;
+    }
+}
+
+.slideLeft{
+  animation-name: slideLeft;
+  animation-duration: 1s;
+  position: relative;
+}
+
+.content{
+  font-family: 'Muli', sans-serif;
+}
+
+
+//generic elements
+p{
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+a{
+  cursor: pointer;
+}
+
+h2{
+  color: $titleColor;
+  font-family: 'Armata', sans-serif;
+  font-size: 15px;
+}
+
+.padding5{
+  padding: 5px;
+}
+
+.padding10{
+  padding: 10px;
+}
+
+.padding15{
+  padding: 15px;
 }
