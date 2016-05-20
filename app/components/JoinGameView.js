@@ -15,7 +15,7 @@ class JoinGameView extends Component{
     return (
       <div className='slideLeft text-center'>
 
-        <div className='row padding15'>
+        <div className='row padding10'>
           <div className='col-xs-2'></div>
           <div className='col-xs-3 padding5'>GameId:</div>
           <div className='col-xs-5'>
@@ -24,7 +24,7 @@ class JoinGameView extends Component{
           <div className='col-xs-2'></div>
         </div>
 
-        <div className='row padding15'>
+        <div className='row padding10'>
           <div className='col-xs-2'></div>
           <div className='col-xs-3 padding5'>Username:</div>
           <div className='col-xs-5'>
