@@ -34,7 +34,7 @@ class JoinGameView extends Component{
         </div>
 
         <div className='row padding5'>
-          <CreateButton/>
+          <JoinButton/>
         </div>
 
         <div id="error"></div>
