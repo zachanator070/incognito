@@ -80,18 +80,20 @@ class PlayingView extends Component{
 
 	}
 
-	hideInfo(showing){
+	hideInfo(){
 		let link = $('#hideLink');
 		let info = $('#sensitiveInfo');
 
+		let showing = info.css('display') == 'block';
+
 		if(showing){
 			info.css('display','none');
-			link.value('Show Info');
+			link.text('Show Info');
 			link.attr('onclick', '').click(this.hideInfo(false));
 		}
 		else{
 			info.css('display','block');
-			link.value('Hide Info');
+			link.text('Hide Info');
 			link.attr('onclick', '').click(this.hideInfo(true));
 		}
 
@@ -124,7 +126,7 @@ class PlayingView extends Component{
 					</div>
 
 					<div className='row text-center padding 5'>
-						<a onClick={this.hideInfo(true)} id='hideLink'>Hide Info</a>
+						<a onClick={this.hideInfo} id='hideLink'>Hide Info</a>
 					</div>
 
 					<div id='sensitiveInfo form-control'>
