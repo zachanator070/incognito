@@ -159,7 +159,7 @@ class PlayingView extends Component{
 					<div className='row'>
 						Possible Locations:
 					</div>
-					<div className='locationList'>
+					<div>
 						{this.renderLocations(this.props.possibleLocations)}
 					</div>
 				</div>

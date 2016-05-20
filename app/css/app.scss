@@ -64,13 +64,13 @@ $titleColor: grey;
   border-radius: 10px;
 }
 
-.locationList{
-  display: inline-block;
-}
-
 .locationName{
   border: grey thin solid;
   border-radius: 5px;
+  display: inline-block;
+  padding-left:3px;
+  padding-right:3px;
+  margin: 5px;
 }
 
 // global style
