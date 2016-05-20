@@ -16,18 +16,18 @@ class JoinGameView extends Component{
       <div className='slideLeft'>
 
         <div className='row padding10'>
-          <div className='col-xs-2'></div>
+          <div className='col-xs-1'></div>
           <div className='col-xs-3 padding5 text-right'>GameId:</div>
-          <div className='col-xs-5'>
-            <input className='form-control' type="text" id="gamdId" placeholder='someGameCode1337'/>
+          <div className='col-xs-7'>
+            <input className='form-control' type="text" id="gamdId" placeholder='1337n00b$'/>
           </div>
           <div className='col-xs-2'></div>
         </div>
 
         <div className='row padding10'>
-          <div className='col-xs-2'></div>
+          <div className='col-xs-1'></div>
           <div className='col-xs-3 padding5 text-right'>Username:</div>
-          <div className='col-xs-5'>
+          <div className='col-xs-7'>
             <input className='form-control' type="text" id="username" placeholder='AwesomeMan007'/>
           </div>
           <div className='col-xs-2'></div>
