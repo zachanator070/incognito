@@ -155,8 +155,10 @@ class PlayingView extends Component{
 
 				</div>
 
-				<div className='row text-center'>
-					Possible Locations:
+				<div className='row text-center padding5'>
+					<div className='row'>
+						Possible Locations:
+					</div>
 					<div className='locationList'>
 						{this.renderLocations(this.props.possibleLocations)}
 					</div>
