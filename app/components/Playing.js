@@ -65,7 +65,7 @@ class PlayingView extends Component{
 
 		return locations.map((value)=>{
 
-			return (<li> {value}</li>);
+			return (<div className='locationName'> {value}</div>);
 
 		});
 
@@ -157,9 +157,9 @@ class PlayingView extends Component{
 
 				<div className='row text-center'>
 					Possible Locations:
-					<ul>
+					<div className='locationList'>
 						{this.renderLocations(this.props.possibleLocations)}
-					</ul>
+					</div>
 				</div>
 
 				{this.renderEndGameButton()}
