@@ -130,7 +130,7 @@ io.on('connection', (socket) => {
         console.log('data got back: '+ data);
         console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
 
-        let isSpy = false;
+        var isSpy = false;
 
         JSON.parse(data).roles.forEach((role, index)=>{
           if(role.player == player && role.role == 'Spy'){

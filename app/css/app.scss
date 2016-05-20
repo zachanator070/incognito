@@ -9,11 +9,15 @@ $titleColor: grey;
 .title{
   color: $titleColor;
   font-family: 'Armata', sans-serif;
-  font-size: 30px;
+  font-size: 4em;
   text-decoration-color: white;
   text-decoration: line-through white;
   padding-top: 10%;
   padding-bottom: 5%;
+}
+
+.btn-default {
+  font-size: 2em;
 }
 
 @keyframes showHelp {
@@ -97,7 +101,7 @@ a{
 h2{
   color: $titleColor;
   font-family: 'Armata', sans-serif;
-  font-size: 15px;
+  font-size: 2em;
 }
 
 .padding5{
