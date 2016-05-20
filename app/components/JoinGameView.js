@@ -19,7 +19,7 @@ class JoinGameView extends Component{
           <div className='col-xs-1'></div>
           <div className='col-xs-3 padding5 text-right'>GameId:</div>
           <div className='col-xs-7'>
-            <input className='form-control' type="text" id="gamdId" placeholder='1337n00b$'/>
+            <input className='form-control' type="text" id="gameId" placeholder='1337n00b$'/>
           </div>
           <div className='col-xs-2'></div>
         </div>
