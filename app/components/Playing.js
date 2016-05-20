@@ -52,7 +52,6 @@ class PlayingView extends Component{
 		else{
 			return (
 				<div className='row padding5'>
-					<div className='col-xs-2'></div>
 					<div className='col-xs-4 text-right'>Location:</div>
 					<div className='col-xs-4'>{this.props.location}</div>
 				</div>
@@ -81,61 +80,81 @@ class PlayingView extends Component{
 
 	}
 
+	hideInfo(showing){
+		let link = $('#hideLink');
+		let info = $('#sensitiveInfo');
+
+		if(showing){
+			info.css('display','none');
+			link.value('Show Info');
+			link.attr('onclick', '').click(this.hideInfo(false));
+		}
+		else{
+			info.css('display','block');
+			link.value('Hide Info');
+			link.attr('onclick', '').click(this.hideInfo(true));
+		}
+
+	}
+
 	render(){
 
 		return (
 			<div>
-				<div className='row padding5'>
-					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Time Left:</div>
-					<div className='col-xs-4'><div id='countdown'></div></div>
-				</div>
+				<div className='col-xs-2'></div>
+				<div className='col-xs-8'>
+					<div className='row padding5'>
+						<div className='col-xs-4 text-right'>Time Left:</div>
+						<div className='col-xs-4'><div id='countdown'></div></div>
+					</div>
 
-				<div className='row padding5'>
-					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>GameId:</div>
-					<div className='col-xs-4'>{this.props.gameId}</div>
-				</div>
+					<div className='row padding5'>
+						<div className='col-xs-4 text-right'>GameId:</div>
+						<div className='col-xs-4'>{this.props.gameId}</div>
+					</div>
 
-				<div className='row padding5'>
-					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Game Host:</div>
-					<div className='col-xs-4'>{this.props.creator}</div>
-				</div>
+					<div className='row padding5'>
+						<div className='col-xs-4 text-right'>Game Host:</div>
+						<div className='col-xs-4'>{this.props.creator}</div>
+					</div>
 
-				<div className='row padding5'>
-					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Username:</div>
-					<div className='col-xs-4'>{this.props.username}</div>
-				</div>
+					<div className='row padding5'>
+						<div className='col-xs-4 text-right'>Username:</div>
+						<div className='col-xs-4'>{this.props.username}</div>
+					</div>
 
-				{this.renderLocation()}
+					<div className='row text-center padding 5'>
+						<a onClick={this.hideInfo(true)} id='hideLink'>Hide Info</a>
+					</div>
 
-				<div className='row padding5'>
-					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Role:</div>
-					<div className='col-xs-4'>{this.props.role}</div>
-				</div>
+					<div id='sensitiveInfo form-control'>
+						{this.renderLocation()}
 
-				<div className='row text-center padding10'>
+						<div className='row padding5'>
+							<div className='col-xs-4 text-right'>Role:</div>
+							<div className='col-xs-4'>{this.props.role}</div>
+						</div>
+					</div>
 
-					Players in Game:
+					<div className='row text-center padding10'>
 
+						Players in Game:
+
+							<ul>
+								{this.renderPlayers(this.props.players)}
+							</ul>
+
+					</div>
+
+					<div className='row text-center padding10'>
+						Possible Locations:
 						<ul>
-							{this.renderPlayers(this.props.players)}
+							{this.renderLocations(this.props.possibleLocations)}
 						</ul>
+					</div>
 
+					{this.renderEndGameButton()}
 				</div>
-
-				<div className='row text-center padding10'>
-					possible locations:<br/>
-					<ul>
-						{this.renderLocations(this.props.possibleLocations)}
-					</ul>
-				</div>
-
-				{this.renderEndGameButton()}
-
 			</div>
 
 		);
