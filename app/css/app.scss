@@ -9,7 +9,7 @@ $titleColor: grey;
 .title{
   color: $titleColor;
   font-family: 'Armata', sans-serif;
-  font-size: 4em;
+  font-size: 3em;
   text-decoration-color: white;
   text-decoration: line-through white;
   padding-top: 10%;
@@ -17,7 +17,7 @@ $titleColor: grey;
 }
 
 .btn-default {
-  font-size: 2em;
+  font-size: 1em;
 }
 
 @keyframes showHelp {
