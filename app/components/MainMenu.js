@@ -47,7 +47,7 @@ class MainMenu extends Component{
         </div>
 
         <div className='help col-md-12' id='help'>
-          <div className='close padding10' onClick={this.hideHelp}>close [x]</div>
+          <div className='close padding10 row' onClick={this.hideHelp}>close [x]</div>
           <h2>Each round consists of:</h2>
           <ul>
             <li>A location that is known to everyone but the spy</li>
