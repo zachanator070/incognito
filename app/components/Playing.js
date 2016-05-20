@@ -103,7 +103,7 @@ class PlayingView extends Component{
 	render(){
 
 		return (
-		<div>
+		<div className='slideLeft'>
 				<div className='row'>
 					<div className='col-xs-2'></div>
 					<div className='col-xs-4 text-right'>Time:</div>

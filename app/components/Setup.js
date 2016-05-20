@@ -33,7 +33,7 @@ class Setup extends Component{
 	render(){
 
 		return (
-			<div>
+			<div className='slideLeft'>
 				<div className='row padding5'>
 					<div className='col-xs-2'></div>
 					<div className='col-xs-4 text-right'>GameId:</div>
