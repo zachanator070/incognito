@@ -104,41 +104,41 @@ class PlayingView extends Component{
 		return (
 			<div>
 				<div className='col-xs-2'></div>
-				<div className='col-xs-8'>
-					<div className='row padding5'>
-						<div className='col-xs-4 text-right'>Time Left:</div>
+				<div>
+					<div className='row'>
+						<div className='col-xs-4 text-right'>Time:</div>
 						<div className='col-xs-4'><div id='countdown'></div></div>
 					</div>
 
-					<div className='row padding5'>
+					<div className='row'>
 						<div className='col-xs-4 text-right'>GameId:</div>
 						<div className='col-xs-4'>{this.props.gameId}</div>
 					</div>
 
-					<div className='row padding5'>
+					<div className='row'>
 						<div className='col-xs-4 text-right'>Game Host:</div>
 						<div className='col-xs-4'>{this.props.creator}</div>
 					</div>
 
-					<div className='row padding5'>
+					<div className='row'>
 						<div className='col-xs-4 text-right'>Username:</div>
 						<div className='col-xs-4'>{this.props.username}</div>
 					</div>
 
-					<div className='row text-center padding 5'>
+					<div className='row text-center'>
 						<a onClick={this.hideInfo} id='hideLink'>Hide Info</a>
 					</div>
 
-					<div id='sensitiveInfo form-control'>
+					<div id='sensitiveInfo' className='form-control'>
 						{this.renderLocation()}
 
-						<div className='row padding5'>
+						<div className='row'>
 							<div className='col-xs-4 text-right'>Role:</div>
 							<div className='col-xs-4'>{this.props.role}</div>
 						</div>
 					</div>
 
-					<div className='row text-center padding10'>
+					<div className='row text-center'>
 
 						Players in Game:
 
@@ -148,7 +148,7 @@ class PlayingView extends Component{
 
 					</div>
 
-					<div className='row text-center padding10'>
+					<div className='row text-center'>
 						Possible Locations:
 						<ul>
 							{this.renderLocations(this.props.possibleLocations)}
