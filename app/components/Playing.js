@@ -52,6 +52,7 @@ class PlayingView extends Component{
 		else{
 			return (
 				<div className='row padding5'>
+					<div className='col-xs-2'></div>
 					<div className='col-xs-4 text-right'>Location:</div>
 					<div className='col-xs-4'>{this.props.location}</div>
 				</div>
@@ -131,12 +132,13 @@ class PlayingView extends Component{
 					<a onClick={this.hideInfo} id='hideLink'>Hide Info</a>
 				</div>
 
-				<div>
+				<div className='row'>
 					<div className='col-xs-2'></div>
 					<div id='sensitiveInfo' className='form-control'>
 						{this.renderLocation()}
 
 						<div className='row'>
+							<div className='col-xs-2'></div>
 							<div className='col-xs-4 text-right'>Role:</div>
 							<div className='col-xs-4'>{this.props.role}</div>
 						</div>
