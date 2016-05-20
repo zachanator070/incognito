@@ -128,11 +128,11 @@ class PlayingView extends Component{
 					<div className='col-xs-4'>{this.props.username}</div>
 				</div>
 
-				<div className='row text-center'>
-					<a onClick={this.hideInfo} id='hideLink'>Hide Info</a>
-				</div>
+				<div className='row padding10'>
+					<div className='row text-center'>
+						<a onClick={this.hideInfo} id='hideLink'>Hide Info</a>
+					</div>
 
-				<div className='row'>
 					<div className='col-xs-2'></div>
 					<div id='sensitiveInfo' className='col-xs-8'>
 						{this.renderLocation()}
