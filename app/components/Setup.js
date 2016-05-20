@@ -32,23 +32,23 @@ class Setup extends Component{
 			<div>
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-3'>GameId:</div>
-					<div className='col-xs-5'>{this.props.gameId}</div>
+					<div className='col-xs-4 text-right'>GameId:</div>
+					<div className='col-xs-4'>{this.props.gameId}</div>
 				</div>
 
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-3'>Game Host:</div>
-					<div className='col-xs-5'>{this.props.creator}</div>
+					<div className='col-xs-4 text-right'>Game Host:</div>
+					<div className='col-xs-4'>{this.props.creator}</div>
 				</div>
 
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-3'>Username:</div>
-					<div className='col-xs-5'>{this.props.username}</div>
+					<div className='col-xs-4 text-right'>Username:</div>
+					<div className='col-xs-4'>{this.props.username}</div>
 				</div>
 
-				<div className='row'>
+				<div className='row text-center'>
 
 					Players in Lobby:
 
@@ -58,7 +58,7 @@ class Setup extends Component{
 
 				</div>
 
-				<div className='row'>
+				<div className='row text-center'>
 						{this.renderStartButton()}
 				</div>
 

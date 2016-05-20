@@ -13,12 +13,12 @@ class JoinGameView extends Component{
   render(){
 
     return (
-      <div className='slideLeft text-center'>
+      <div className='slideLeft'>
 
         <div className='row padding10'>
           <div className='col-xs-2'></div>
-          <div className='col-xs-3 padding5'>GameId:</div>
-          <div className='col-xs-5'>
+          <div className='col-xs-4 padding5 text-right'>GameId:</div>
+          <div className='col-xs-4'>
             <input className='form-control' type="text" id="gamdId" placeholder='someGameCode1337'/>
           </div>
           <div className='col-xs-2'></div>
@@ -26,14 +26,14 @@ class JoinGameView extends Component{
 
         <div className='row padding10'>
           <div className='col-xs-2'></div>
-          <div className='col-xs-3 padding5'>Username:</div>
-          <div className='col-xs-5'>
+          <div className='col-xs-4 padding5 text-right'>Username:</div>
+          <div className='col-xs-4'>
             <input className='form-control' type="text" id="username" placeholder='AwesomeMan007'/>
           </div>
           <div className='col-xs-2'></div>
         </div>
 
-        <div className='row padding5'>
+        <div className='row padding5 text-center'>
           <JoinButton/>
         </div>
 
