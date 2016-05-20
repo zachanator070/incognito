@@ -134,7 +134,7 @@ class PlayingView extends Component{
 
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div id='sensitiveInfo' className='form-control'>
+					<div id='sensitiveInfo' className='col-xs-8'>
 						{this.renderLocation()}
 
 						<div className='row'>
