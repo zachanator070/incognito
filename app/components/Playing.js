@@ -33,7 +33,11 @@ class PlayingView extends Component{
 
 	renderEndGameButton(){
 		if(this.props.creator == this.props.username){
-			return (<ActionButton onclick={this.props.onEndGame} value="End Game"/>);
+			return (
+				<div className='row text-center'>
+					<ActionButton onclick={this.props.onEndGame} value="End Game"/>
+				</div>
+			);
 		}
 		else{
 			return;
@@ -47,8 +51,10 @@ class PlayingView extends Component{
 		}
 		else{
 			return (
-				<div>
-					location:{this.props.location}
+				<div className='row padding5'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>Location:</div>
+					<div className='col-xs-4'>{this.props.location}</div>
 				</div>
 			);
 		}
@@ -79,22 +85,54 @@ class PlayingView extends Component{
 
 		return (
 			<div>
-				timeleft: <div id='countdown'></div><br/>
-				gameId: {this.props.gameId}<br/>
-				creator: {this.props.creator}<br/>
-				username: {this.props.username}<br/>
-				{this.renderLocation()}<br/>
-				role: {this.props.role}<br/>
+				<div className='row padding5'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>Time Left:</div>
+					<div className='col-xs-4'><div id='countdown'></div></div>
+				</div>
 
-				players:
-				<ul>
-					{this.renderPlayers(this.props.players)}
-				</ul>
+				<div className='row padding5'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>GameId:</div>
+					<div className='col-xs-4'>{this.props.gameId}</div>
+				</div>
 
-				possible locations:<br/>
-				<ul>
-					{this.renderLocations(this.props.possibleLocations)}
-				</ul>
+				<div className='row padding5'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>Game Host:</div>
+					<div className='col-xs-4'>{this.props.creator}</div>
+				</div>
+
+				<div className='row padding5'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>Username:</div>
+					<div className='col-xs-4'>{this.props.username}</div>
+				</div>
+
+				{this.renderLocation()}
+
+				<div className='row padding5'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>Role:</div>
+					<div className='col-xs-4'>{this.props.role}</div>
+				</div>
+
+				<div className='row text-center padding10'>
+
+					Players in Game:
+
+						<ul>
+							{this.renderPlayers(this.props.players)}
+						</ul>
+
+				</div>
+
+				<div className='row text-center padding10'>
+					possible locations:<br/>
+					<ul>
+						{this.renderLocations(this.props.possibleLocations)}
+					</ul>
+				</div>
 
 				{this.renderEndGameButton()}
 

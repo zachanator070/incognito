@@ -18,7 +18,11 @@ class Setup extends Component{
 
 		if(this.props.username == this.props.creator){
 			console.log("username: "+this.props.username+" creator: "+this.props.creator);
-			return (<ActionButton onclick={this.props.onStartGame} value="Start Game"/>);
+			return (
+				<div className='row text-center'>
+					<ActionButton onclick={this.props.onStartGame} value="Start Game"/>
+				</div>
+				);
 		}
 		else{
 			return;
@@ -58,9 +62,7 @@ class Setup extends Component{
 
 				</div>
 
-				<div className='row text-center'>
-						{this.renderStartButton()}
-				</div>
+				{this.renderStartButton()}
 
 			</div>
 
