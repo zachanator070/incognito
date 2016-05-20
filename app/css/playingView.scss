@@ -1,0 +1,24 @@
+//playing view style
+
+#sensitiveInfo{
+  border: grey thin solid;
+  border-radius: 10px;
+}
+
+.locationName{
+  border: grey thin solid;
+  border-radius: 5px;
+  display: inline-block;
+  padding-left:3px;
+  padding-right:3px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: white;
+  font-color: black;
+}
+
+.hideButton{
+  @extend .btn-default;
+  padding: 2px;
+  margin: 5px;
+}
