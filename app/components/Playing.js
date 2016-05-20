@@ -102,33 +102,37 @@ class PlayingView extends Component{
 	render(){
 
 		return (
-			<div>
-				<div className='col-xs-2'></div>
+		<div>
+				<div className='row'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>Time:</div>
+					<div className='col-xs-4'><div id='countdown'></div></div>
+				</div>
+
+				<div className='row'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>GameId:</div>
+					<div className='col-xs-4'>{this.props.gameId}</div>
+				</div>
+
+				<div className='row'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>Game Host:</div>
+					<div className='col-xs-4'>{this.props.creator}</div>
+				</div>
+
+				<div className='row'>
+					<div className='col-xs-2'></div>
+					<div className='col-xs-4 text-right'>Username:</div>
+					<div className='col-xs-4'>{this.props.username}</div>
+				</div>
+
+				<div className='row text-center'>
+					<a onClick={this.hideInfo} id='hideLink'>Hide Info</a>
+				</div>
+
 				<div>
-					<div className='row'>
-						<div className='col-xs-4 text-right'>Time:</div>
-						<div className='col-xs-4'><div id='countdown'></div></div>
-					</div>
-
-					<div className='row'>
-						<div className='col-xs-4 text-right'>GameId:</div>
-						<div className='col-xs-4'>{this.props.gameId}</div>
-					</div>
-
-					<div className='row'>
-						<div className='col-xs-4 text-right'>Game Host:</div>
-						<div className='col-xs-4'>{this.props.creator}</div>
-					</div>
-
-					<div className='row'>
-						<div className='col-xs-4 text-right'>Username:</div>
-						<div className='col-xs-4'>{this.props.username}</div>
-					</div>
-
-					<div className='row text-center'>
-						<a onClick={this.hideInfo} id='hideLink'>Hide Info</a>
-					</div>
-
+					<div className='col-xs-2'></div>
 					<div id='sensitiveInfo' className='form-control'>
 						{this.renderLocation()}
 
@@ -137,26 +141,26 @@ class PlayingView extends Component{
 							<div className='col-xs-4'>{this.props.role}</div>
 						</div>
 					</div>
-
-					<div className='row text-center'>
-
-						Players in Game:
-
-							<ul>
-								{this.renderPlayers(this.props.players)}
-							</ul>
-
-					</div>
-
-					<div className='row text-center'>
-						Possible Locations:
-						<ul>
-							{this.renderLocations(this.props.possibleLocations)}
-						</ul>
-					</div>
-
-					{this.renderEndGameButton()}
 				</div>
+
+				<div className='row text-center'>
+
+					Players in Game:
+
+						<ul>
+							{this.renderPlayers(this.props.players)}
+						</ul>
+
+				</div>
+
+				<div className='row text-center'>
+					Possible Locations:
+					<ul>
+						{this.renderLocations(this.props.possibleLocations)}
+					</ul>
+				</div>
+
+				{this.renderEndGameButton()}
 			</div>
 
 		);
