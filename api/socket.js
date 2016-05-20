@@ -138,10 +138,15 @@ io.on('connection', (socket) => {
           }
         });
 
-        if(JSON.parse(data).creator == player || isSpy){
+        if(JSON.parse(data).creator == player){
           console.log('host left the game '+gameId);
           socket.to(gameId).emit("GAME_CLOSED");
           deleteGame(gameId);
+        }
+
+        else if(isSpy){
+          console.log('spy left the game '+gameId);
+          socket.to(gameId).emit("END_GAME");
         }
       }
     });

@@ -17,7 +17,7 @@ class JoinGameView extends Component{
 
         <div className='row padding10'>
           <div className='col-xs-1'></div>
-          <div className='col-xs-3 padding5 text-right'>GameId:</div>
+          <div className='col-xs-3 padding5 text-right'><h3>GameId:</h3></div>
           <div className='col-xs-7'>
             <input className='form-control' type="text" id="gameId" placeholder='1337n00b$'/>
           </div>
@@ -26,7 +26,7 @@ class JoinGameView extends Component{
 
         <div className='row padding10'>
           <div className='col-xs-1'></div>
-          <div className='col-xs-3 padding5 text-right'>Username:</div>
+          <div className='col-xs-3 padding5 text-right'><h3>Username:</h3></div>
           <div className='col-xs-7'>
             <input className='form-control' type="text" id="username" placeholder='AwesomeMan007'/>
           </div>

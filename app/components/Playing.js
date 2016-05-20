@@ -3,6 +3,9 @@ import $ from 'jquery';
 
 import ActionButton from './ActionButton';
 
+//game time is in minutes
+const gameTime = 15;
+
 class PlayingView extends Component{
 
 	startTimer(duration, display){
@@ -27,7 +30,7 @@ class PlayingView extends Component{
 
 	componentDidMount(){
 
-		this.startTimer(60,$('#countdown'));
+		this.startTimer(60*gameTime,$('#countdown'));
 
 	}
 
@@ -53,7 +56,7 @@ class PlayingView extends Component{
 			return (
 				<div className='row padding5'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Location:</div>
+					<h3 className='col-xs-4 text-right'>Location:</h3>
 					<div className='col-xs-4'>{this.props.location}</div>
 				</div>
 			);
@@ -61,11 +64,43 @@ class PlayingView extends Component{
 
 	}
 
+	changeColor(value){
+
+		let id = "#"+value;
+
+		let location = $(id);
+
+		if(location.css('background-color')=='rgb(255, 255, 255)'){
+			location.css('background-color','black');
+			location.css('color','white');
+		}
+		else{
+			location.css('background-color','white');
+			location.css('color','black');
+		}
+
+	}
+
 	renderLocations(locations){
 
-		return locations.map((value)=>{
+		return locations.map((value, index)=>{
 
-			return (<div className='locationName'> {value}</div>);
+			if(index%2==0){
+
+				let id = value.replace(/\s*\'*/g, '');
+				let nextId = locations[index+1].replace(/\s*\'*/g, '');
+
+					return (
+						<div className='row'>
+							<div className='col-xs-6 text-right'><div className='locationName' id={id} onClick={() => {this.changeColor(id)}}>{value}</div></div>
+							<div className='col-xs-6'><div className='locationName' id={nextId} onClick={() => {this.changeColor(nextId)}}> {locations[index+1]}</div></div>
+						</div>
+						);
+			}
+
+			else{
+					return '';
+			}
 
 		});
 
@@ -90,12 +125,10 @@ class PlayingView extends Component{
 		if(showing){
 			info.css('display','none');
 			link.text('Show Info');
-			link.attr('onclick', '').click(this.hideInfo(false));
 		}
 		else{
 			info.css('display','block');
 			link.text('Hide Info');
-			link.attr('onclick', '').click(this.hideInfo(true));
 		}
 
 	}
@@ -106,31 +139,31 @@ class PlayingView extends Component{
 		<div className='slideLeft'>
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Time:</div>
+					<h3 className='col-xs-4 text-right'>Time:</h3>
 					<div className='col-xs-4'><div id='countdown'></div></div>
 				</div>
 
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>GameId:</div>
+					<h3 className='col-xs-4 text-right'>GameId:</h3>
 					<div className='col-xs-4'>{this.props.gameId}</div>
 				</div>
 
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Game Host:</div>
+					<h3 className='col-xs-4 text-right'>Host:</h3>
 					<div className='col-xs-4'>{this.props.creator}</div>
 				</div>
 
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Username:</div>
+					<h3 className='col-xs-4 text-right'>Username:</h3>
 					<div className='col-xs-4'>{this.props.username}</div>
 				</div>
 
 				<div className='row padding10'>
 					<div className='row text-center'>
-						<a onClick={this.hideInfo} id='hideLink'>Hide Info</a>
+						<button className='btn hideButton' onClick={this.hideInfo} id='hideLink'>Hide Info</button>
 					</div>
 
 					<div className='col-xs-2'></div>
@@ -139,7 +172,7 @@ class PlayingView extends Component{
 
 						<div className='row'>
 							<div className='col-xs-2'></div>
-							<div className='col-xs-4 text-right'>Role:</div>
+							<h3 className='col-xs-4 text-right'>Role:</h3>
 							<div className='col-xs-4'>{this.props.role}</div>
 						</div>
 					</div>
@@ -147,7 +180,7 @@ class PlayingView extends Component{
 
 				<div className='row text-center'>
 
-					Players in Game:
+					<h3>Players in Game:</h3>
 
 						<ul>
 							{this.renderPlayers(this.props.players)}
@@ -155,11 +188,11 @@ class PlayingView extends Component{
 
 				</div>
 
-				<div className='row text-center padding5'>
-					<div className='row'>
-						Possible Locations:
+				<div className='row padding5'>
+					<div className='row text-center'>
+						<h3>Possible Locations:</h3>
 					</div>
-					<div>
+					<div className='row'>
 						{this.renderLocations(this.props.possibleLocations)}
 					</div>
 				</div>

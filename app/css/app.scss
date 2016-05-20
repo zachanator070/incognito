@@ -16,10 +16,6 @@ $titleColor: grey;
   padding-bottom: 5%;
 }
 
-.btn-default {
-  font-size: 1em;
-}
-
 @keyframes showHelp {
     from {
       visibility: hidden;
@@ -71,6 +67,15 @@ $titleColor: grey;
   padding-left:3px;
   padding-right:3px;
   margin: 5px;
+  cursor: pointer;
+  background-color: white;
+  font-color: black;
+}
+
+.hideButton{
+  @extend .btn-default;
+  padding: 2px;
+  margin: 5px;
 }
 
 // global style
@@ -120,6 +125,13 @@ h2{
   font-size: 1em;
 }
 
+h3{
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0px;
+  padding: 2px;
+}
+
 .padding5{
   padding: 5px;
 }
@@ -130,4 +142,9 @@ h2{
 
 .padding15{
   padding: 15px;
+}
+
+.margin5{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

@@ -14,7 +14,7 @@ class CreateGameView extends Component{
 
         <div className='row padding15'>
           <div className='col-xs-1'></div>
-          <div className='col-xs-3 padding5 text-right'>Username:</div>
+          <div className='col-xs-3 padding5 text-right'><h3>Username:</h3></div>
           <div className='col-xs-7'>
             <input className='form-control' type="text" id="username" placeholder='AwesomeMan007'/>
           </div>

@@ -36,25 +36,25 @@ class Setup extends Component{
 			<div className='slideLeft'>
 				<div className='row padding5'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>GameId:</div>
+					<h3 className='col-xs-4 text-right'>GameId:</h3>
 					<div className='col-xs-4'>{this.props.gameId}</div>
 				</div>
 
 				<div className='row  padding5'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Game Host:</div>
+					<h3 className='col-xs-4 text-right'>Host:</h3>
 					<div className='col-xs-4'>{this.props.creator}</div>
 				</div>
 
 				<div className='row  padding5'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-4 text-right'>Username:</div>
+					<h3 className='col-xs-4 text-right'>Username:</h3>
 					<div className='col-xs-4'>{this.props.username}</div>
 				</div>
 
 				<div className='row text-center  padding10'>
 
-					Players in Lobby:
+					<h3>Players in Lobby:</h3>
 
 						<ul>
 							{this.renderPlayers(this.props.players)}
