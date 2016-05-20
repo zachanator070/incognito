@@ -39,31 +39,27 @@ class Setup extends Component{
 				<div className='row'>
 					<div className='col-xs-2'></div>
 					<div className='col-xs-3'>Game Host:</div>
-					<div className='col-xs-5'>{this.props.Creator}</div>
+					<div className='col-xs-5'>{this.props.creator}</div>
 				</div>
 
 				<div className='row'>
 					<div className='col-xs-2'></div>
-					<div className='col-xs-3'>Your Username:</div>
+					<div className='col-xs-3'>Username:</div>
 					<div className='col-xs-5'>{this.props.username}</div>
 				</div>
 
 				<div className='row'>
-					<div className='col-xs-2'></div>
-					<div className='col-xs-3'>Players:</div>
-					<div className='col-xs-5'>
+
+					Players in Lobby:
+
 						<ul>
 							{this.renderPlayers(this.props.players)}
 						</ul>
-					</div>
+
 				</div>
 
 				<div className='row'>
-					<div className='col-xs-2'></div>
-					<div className='col-xs-3'></div>
-					<div className='col-xs-5'>
 						{this.renderStartButton()}
-					</div>
 				</div>
 
 			</div>
