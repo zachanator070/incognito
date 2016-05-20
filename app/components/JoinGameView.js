@@ -12,12 +12,35 @@ class JoinGameView extends Component{
 
   render(){
 
-    return <div>
-      Game ID: <input type="text" id="gameId"/><br/>
-      Username: <input type="text" id="username"/><br/>
-      <JoinButton/>
-      <div id="error"></div>
-    </div>;
+    return (
+      <div className='slideLeft text-center'>
+
+        <div className='row padding15'>
+          <div className='col-xs-2'></div>
+          <div className='col-xs-3 padding5'>GameId:</div>
+          <div className='col-xs-5'>
+            <input className='form-control' type="text" id="gamdId" placeholder='someGameCode1337'/>
+          </div>
+          <div className='col-xs-2'></div>
+        </div>
+
+        <div className='row padding15'>
+          <div className='col-xs-2'></div>
+          <div className='col-xs-3 padding5'>Username:</div>
+          <div className='col-xs-5'>
+            <input className='form-control' type="text" id="username" placeholder='AwesomeMan007'/>
+          </div>
+          <div className='col-xs-2'></div>
+        </div>
+
+        <div className='row padding5'>
+          <CreateButton/>
+        </div>
+
+        <div id="error"></div>
+
+      </div>
+    );
 
   }
 
