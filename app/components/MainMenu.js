@@ -37,7 +37,7 @@ class MainMenu extends Component{
               <div className="btn btn-default">Create Game</div>
             </Link>
           </div>
-          
+
           <div className="row padding10">
             <Link to="/joinGame">
               <div className="btn btn-default">Join Game</div>
@@ -46,7 +46,7 @@ class MainMenu extends Component{
 
         </div>
 
-        <div className='help col-xs-12' id='help'>
+        <div className='help col-md-12' id='help'>
           <div className='close' onClick={this.hideHelp}>close [x]</div>
           <h2>Each round consists of:</h2>
           <ul>
