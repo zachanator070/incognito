@@ -30,25 +30,25 @@ class Setup extends Component{
 
 		return (
 			<div>
-				<div className='row'>
+				<div className='row padding5'>
 					<div className='col-xs-2'></div>
 					<div className='col-xs-4 text-right'>GameId:</div>
 					<div className='col-xs-4'>{this.props.gameId}</div>
 				</div>
 
-				<div className='row'>
+				<div className='row  padding5'>
 					<div className='col-xs-2'></div>
 					<div className='col-xs-4 text-right'>Game Host:</div>
 					<div className='col-xs-4'>{this.props.creator}</div>
 				</div>
 
-				<div className='row'>
+				<div className='row  padding5'>
 					<div className='col-xs-2'></div>
 					<div className='col-xs-4 text-right'>Username:</div>
 					<div className='col-xs-4'>{this.props.username}</div>
 				</div>
 
-				<div className='row text-center'>
+				<div className='row text-center  padding10'>
 
 					Players in Lobby:
 
