@@ -29,8 +29,6 @@ Api.use(Express.static('public'));
 
 Api.put('/games',(req,res) => {
 
-  debugger;
-
   var gameId = RandomId();
   while(Game.where({gameId:gameId}).count() >0){
     gameId = RandomId();

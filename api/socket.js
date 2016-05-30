@@ -113,7 +113,9 @@ io.on('connection', (socket) => {
 
     let min = .5, timeout = min * 60 * 1000;
 
-    setTimeout(cleanUp(player, socket), timeout);
+    setTimeout(()=>{
+      cleanUp(player, socket);
+    }, timeout);
 
     console.log('there are now '+connections.length+" connections");
     console.log(connections);
