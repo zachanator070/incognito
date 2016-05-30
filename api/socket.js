@@ -111,7 +111,7 @@ io.on('connection', (socket) => {
 
     disconnected.push({player:player,gameId: gameId});
 
-    let min = .5, timeout = min * 60 * 1000;
+    let min = 15, timeout = min * 60 * 1000;
 
     setTimeout(()=>{
       cleanUp(player, socket);
