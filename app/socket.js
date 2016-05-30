@@ -22,6 +22,7 @@ socket.on('connection', ()=>{
 	if(gameId != "" && gameId != null){
 		socket.emit('room',gameId);
 		socket.emit('reconnect',username);
+		updateGameInfo();
 	}
 
 	console.log("connected to server socket");
@@ -88,5 +89,24 @@ socket.on('END_GAME', ()=>{
 	store.dispatch(createChangeGameStateAction(GameStates.SETUP));
 	browserHistory.push("/setup");
 });
+
+const updateGameInfo = () =>{
+
+	request({
+			headers: {'content-type' : 'application/json'},
+			method: 'get',
+			url: 'http://localhost:3000/games',
+			body: JSON.stringify({gameId:connection.gameId})
+	},
+	(error,response,data)=>{
+
+		if(data.state == 'SETUP'){
+			store.dispatch(createChangeGameStateAction(GameStates.SETUP));
+			browserHistory.push("/setup");
+		}
+
+	});
+
+};
 
 export default socket;

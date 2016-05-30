@@ -114,7 +114,7 @@ io.on('connection', (socket) => {
     let min = 15, timeout = min * 60 * 1000;
 
     setTimeout(()=>{
-      cleanUp(player, socket);
+      cleanUp(player, gameId, socket);
     }, timeout);
 
     console.log('there are now '+connections.length+" connections");
@@ -135,13 +135,13 @@ io.on('connection', (socket) => {
 
 });
 
-const cleanUp = (player, socket)=>{
+const cleanUp = (player, gameId, socket)=>{
 
-  disconnected.map((connection, index)=>{
+  disconnected.filter((connection, index)=>{
 
     debugger;
 
-    if(connection.player == player){
+    if(connection.player == player && connection.gameId == gameId){
 
       //need to tell the server that the user left the game
       //then need to see if the disconnected user was the creator, if so tell the other players
