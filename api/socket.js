@@ -93,10 +93,6 @@ io.on('connection', (socket) => {
     var gameId = "";
     var player = "";
 
-    var date = new Date();
-    var now = date.getTime();
-
-
     //need to update the current sockets that are being kept track of
     connections = connections.filter((connection)=>{
 
@@ -113,29 +109,37 @@ io.on('connection', (socket) => {
 
     });
 
-    disconnected.push({player:player,gameId: gameId, time:now});
+    disconnected.push({player:player,gameId: gameId});
+
+    let min = .5, timeout = min * 60 * 1000;
+
+    setTimeout(cleanUp(player, socket), timeout);
 
     console.log('there are now '+connections.length+" connections");
     console.log(connections);
 
   });
 
+  socket.on('reconnect',(player)=>{
+
+    disconnected.filter((connection,index)=>{
+      if(connection.player == player){
+        return false;
+      }
+      return true;
+    });
+
+  });
+
 });
 
-const cleanUp = ()=>{
+const cleanUp = (player, socket)=>{
 
-  let date = new Date();
-  let now = date.getTime();
-
-  //timeout is in minutes
-  let timeout = .5;
-  let timeoutMiliseconds = timeout * 60 * 1000;
-
-  disconnected.filter((connection, index)=>{
+  disconnected.map((connection, index)=>{
 
     debugger;
 
-    if(connection.time + timeoutMiliseconds > now){
+    if(connection.player == player){
 
       //need to tell the server that the user left the game
       //then need to see if the disconnected user was the creator, if so tell the other players
@@ -194,9 +198,5 @@ const cleanUp = ()=>{
   });
 
 };
-
-const min = .5, miliseconds = min * 60 * 1000;
-
-setInterval(cleanUp, miliseconds);
 
 module.exports = io;

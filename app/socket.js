@@ -17,9 +17,11 @@ let socket = io();
 socket.on('connection', ()=>{
 
 	let gameId = store.getState().gameId;
+	let username = store.getState().username;
 
 	if(gameId != "" && gameId != null){
 		socket.emit('room',gameId);
+		socket.emit('reconnect',username);
 	}
 
 	console.log("connected to server socket");
