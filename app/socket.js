@@ -16,6 +16,12 @@ let socket = io();
 
 socket.on('connection', ()=>{
 
+	let gameId = store.getState().gameId;
+
+	if(gameId != "" && gameId != null){
+		socket.emit('room',gameId);
+	}
+
 	console.log("connected to server socket");
 });
 
