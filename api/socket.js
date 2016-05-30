@@ -4,6 +4,7 @@ var Server = require('socket.io');
 var io = new Server();
 
 var connections = [];
+var disconnected = [];
 
 const deleteGame = (gameId)=>{
 
@@ -90,17 +91,17 @@ io.on('connection', (socket) => {
     var gameId = "";
     var player = "";
 
-    /*
+    var date = new Date();
+    var now = date.getTime();
+
 
     //need to update the current sockets that are being kept track of
-    //then find the game that they were apart of and tell the rest of the players
     connections = connections.filter((connection)=>{
 
       console.log(connection.socket.id == socket.id);
 
       if(connection.socket == socket){
         console.log("player "+connection.player+" left game "+connection.gameId);
-        socket.to(connection.gameId).emit('PLAYER_LEFT',{player:connection.player});
         gameId = connection.gameId;
         player = connection.player;
         return false;
@@ -110,53 +111,90 @@ io.on('connection', (socket) => {
 
     });
 
+    disconnected.push({player:player,gameId: gameId, time:now});
 
     console.log('there are now '+connections.length+" connections");
     console.log(connections);
 
-
-    //need to tell the server that the user left the game
-    //then need to see if the disconnected user was the creator, if so tell the other players
-    request({
-        headers: {'content-type' : 'application/json'},
-        method: 'post',
-        url: 'http://localhost:3000/games/leave',
-        body: JSON.stringify({gameId:gameId, player:player})
-    },
-    (error,response,data)=>{
-      if(error){
-        console.log('could not get games '+error);
-        return;
-      }
-      else if(response.statusCode==200){
-        console.log('data got back: '+ data);
-        console.log('searching for user '+player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (data.creator == player));
-
-        var isSpy = false;
-
-        JSON.parse(data).roles.forEach((role, index)=>{
-          if(role.player == player && role.role == 'Spy'){
-            isSpy=true;
-          }
-        });
-
-        if(JSON.parse(data).creator == player){
-          console.log('host left the game '+gameId);
-          socket.to(gameId).emit("GAME_CLOSED");
-          deleteGame(gameId);
-        }
-
-        else if(isSpy){
-          console.log('spy left the game '+gameId);
-          socket.to(gameId).emit("END_GAME");
-        }
-      }
-    });
-
-*/
-
   });
 
 });
+
+const cleanUp = ()=>{
+
+  let date = new Date();
+  let now = date.getTime();
+
+  //timeout is in minutes
+  let timeout = .5;
+  let timeoutMiliseconds = timeout * 60 * 1000;
+
+  disconnected.filter((connection, index)=>{
+
+    debugger;
+
+    if(connection.time + timeoutMiliseconds > now){
+
+      //need to tell the server that the user left the game
+      //then need to see if the disconnected user was the creator, if so tell the other players
+      request({
+          headers: {'content-type' : 'application/json'},
+          method: 'post',
+          url: 'http://localhost:3000/games/leave',
+          body: JSON.stringify({gameId:connection.gameId, player:connection.player})
+      },
+      (error,response,data)=>{
+
+        debugger;
+
+        if(error){
+          console.log('could not get games '+error);
+          return;
+        }
+        else if(response.statusCode==200){
+          console.log('data got back: '+ data);
+          console.log('searching for user '+connection.player +'compared to '+ JSON.parse(data)['creator']+' results in '+ (JSON.parse(data)['creator'] == connection.player));
+
+          var isSpy = false;
+
+          //search the current roles to see if disconnected player was the spy
+          JSON.parse(data).roles.forEach((role, index)=>{
+            if(role.player == connection.player && role.role == 'Spy'){
+              isSpy=true;
+            }
+          });
+
+          //if the disconnected player was the host
+          if(JSON.parse(data).creator == connection.player){
+            console.log('host left the game '+connection.gameId);
+            socket.to(connection.gameId).emit("GAME_CLOSED");
+            deleteGame(connection.gameId);
+          }
+
+          //if the disconnected player was the spy
+          else if(isSpy){
+            console.log('spy left the game '+connection.gameId);
+            socket.to(connection.gameId).emit("END_GAME");
+          }
+
+          //if the disconnected player was just a normal player
+          else{
+            socket.to(connection.gameId).emit('PLAYER_LEFT',{player:connection.player});
+          }
+        }
+      });
+
+      return false;
+
+    }
+
+    return true;
+  });
+
+};
+
+const min = .5, miliseconds = min * 60 * 1000;
+
+setInterval(cleanUp, miliseconds);
 
 module.exports = io;
