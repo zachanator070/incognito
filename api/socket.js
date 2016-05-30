@@ -90,6 +90,8 @@ io.on('connection', (socket) => {
     var gameId = "";
     var player = "";
 
+    /*
+
     //need to update the current sockets that are being kept track of
     //then find the game that they were apart of and tell the rest of the players
     connections = connections.filter((connection)=>{
@@ -150,6 +152,8 @@ io.on('connection', (socket) => {
         }
       }
     });
+
+*/
 
   });
 
