@@ -52,7 +52,7 @@ var locations = {
 		"Superman",
 		"Wolverine"
 	],
-	"Mines of Moria":[
+	"Mines of Moria (Lord of the Rings)":[
 		"Gandalf",
 		"Frodo",
 		"Sam",
@@ -64,7 +64,7 @@ var locations = {
 		"Legolas",
 		"Gimli"
 	],
-	"Bespin Cloud City":[
+	"Bespin Cloud City (Star Wars)":[
 		"Luke",
 		"Leia",
 		"Han Solo",
@@ -88,18 +88,6 @@ var locations = {
 		"Gambler",
 		"Stow Away"
 	],
-	"Star Killer Base":[
-		'Kylo Ren',
-		'Rey',
-		'Finn',
-		'Han Solo',
-		'Chewbacca',
-		'Strom Trooper',
-		'Captain Phasma',
-		'New Order Officer',
-		'Janitor',
-		'Plasma Cannon Opperator'
-	],
 	'Medieval Castle':[
 		'King',
 		'Knight',
@@ -112,7 +100,7 @@ var locations = {
 		'King\'s Consult',
 		'Town Drunk'
 	],
-	'Hoth Rebel Base':[
+	'Hoth Rebel Base (Star Wars)':[
 		"Luke",
 		"Leia",
 		"Han Solo",
@@ -124,7 +112,7 @@ var locations = {
 		"AT-AT",
 		"Imperial Snow Trooper"
 	],
-	"Minas Tirith":[
+	"Minas Tirith (Lord of the Rings)":[
 		"Gandalf",
 		"Pippen",
 		"Steward of Gondor",
@@ -136,7 +124,7 @@ var locations = {
 		"Orc",
 		"Lich King"
 	],
-	'Death Star':[
+	'Death Star (Star Wars)':[
 		'Luke',
 		'Emporer Palpitine',
 		'Darth Vadar',
@@ -184,7 +172,7 @@ var locations = {
 		'Senator',
 		'Card Counter'
 	],
-	'Avenger Tower':[
+	'Avenger Tower (Avengers)':[
 		'Tony Stark',
 		'Captain America',
 		'Black Widow',
@@ -196,7 +184,7 @@ var locations = {
 		'Nick Fury',
 		'Black Panther'
 	],
-	'Hogwarts':[
+	'Hogwarts (Harry Potter)':[
 		'Hary Potter',
 		'Hermione Granger',
 		'Ron Weasley',
@@ -208,7 +196,7 @@ var locations = {
 		'Draco Malfoy',
 		'Minerva McGonagall'
 	],
-	'Xavier\'s School for Gifted Youngsters':[
+	'Xavier\'s School for Gifted Youngsters (X-Men)':[
 		'Dr Xavier',
 		'Wolverine',
 		'Storm',
@@ -220,7 +208,7 @@ var locations = {
 		'Jean Gray',
 		'Nightcrawler'
 	],
-	'Pallet Town':[
+	'Pokemon Stadium':[
 		'Ash Ketchum',
 		'Ash\'s Mom',
 		'Mr. Mime',
