@@ -7,6 +7,6 @@ var server = require('http').createServer(Api);
 // start the server
 io = io.attach(server);
 
-server.listen(3000, function () {
+server.listen(5000, function () {
   console.log("Started on port 3000");
 });
