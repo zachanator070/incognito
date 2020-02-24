@@ -8,5 +8,5 @@ var server = require('http').createServer(Api);
 io = io.attach(server);
 
 server.listen(5000, function () {
-  console.log("Started on port 3000");
+  console.log("Started on port 5000");
 });
